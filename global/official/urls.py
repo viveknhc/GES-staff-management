@@ -7,5 +7,10 @@ app_name = "official"
 urlpatterns = [
     path("", views.index, name="index"),
     path("login/", views.login, name="login"),
+
     path("register/", views.register, name="register"),
+    path("checker/", views.checker, name="checker"),
+    path("detailer/", views.detailer, name="detailer"),
+    path("submission/", views.submission, name="submission"),
+    path("attendance/", views.attendance, name="attendance"),
 ]
