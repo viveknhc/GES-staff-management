@@ -1,0 +1,54 @@
+{% extends 'official/partials/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">Amitha RK</h3>
+            <h6 class="font-weight-normal mb-0">Daily Report</h6>
+          </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>sl/no</th>
+                                <th>Date</th>
+                                <th>Cust/Project</th>
+                                <th>Description</th>
+                                <th>Detailer Name</th>
+                                <th>Checker Name</th>
+                                <th>WT/MT</th>
+                                <th>NO OF Sheets</th>
+                                <th>Status</th>
+                   
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>30/12/22</td>
+                                <td>MS123</td>
+                                <td>TD L05 SLAB UPDATION,SVG P1&P2 L3&4 UPDATION</td>
+                          
+                                <td>ffgf</td>
+
+                                <td>2</td>
+                                <td>Completed</td>
+                                <td>
+                                    <label class="badge badge-info">On hold</label>
+                                </td>
+                                <td>
+                                    <a href="{% url 'official:project-detail' %}" class="btn btn-outline-primary">View</a>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

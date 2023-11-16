@@ -28,3 +28,20 @@ def attendance(request):
     return render(request, "official/attendance.html", context)
 
 
+def addChecker(request):
+    context = {"is_addChecker": True}
+    return render(request, "official/add-checker.html", context)
+
+def projects(request):
+    context = {"is_projects": True}
+    return render(request, "official/projects.html", context)
+
+def addProject(request):
+    context = {"is_add-project": True}
+    return render(request, "official/add-project.html", context)
+
+def projectDetail(request):
+    context = {"is_project_detail": True}
+    return render(request, "official/project-detail.html", context)
+
+

@@ -2,31 +2,79 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{% url 'official:index' %}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
+
+
       <li class="nav-item">
-        <a class="nav-link" href="pages/widgets/widgets.html">
-          <i class="icon-cog menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+          <i class="icon-columns menu-icon"></i>
           <span class="menu-title">Detailer</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="form-elements">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">View Detailer</a></li>                
+            <li class="nav-item"><a class="nav-link" href="pages/forms/advanced_elements.html">Add Detailer</a></li>
+          </ul>
+        </div>
       </li>
 
+
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'official:checker' %}">
-          <i class="icon-cog menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#checker" aria-expanded="false" aria-controls="checker">
+          <i class="icon-columns menu-icon"></i>
           <span class="menu-title">Checker</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="checker">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{% url 'official:checker' %}">View Checker</a></li>                
+            <li class="nav-item"><a class="nav-link" href="{% url 'official:add-checker' %}">Add Checker</a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="pages/widgets/widgets.html">
+        <a class="nav-link" data-bs-toggle="collapse" href="#project" aria-expanded="false" aria-controls="project">
+          <i class="icon-columns menu-icon"></i>
+          <span class="menu-title">Projects</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="project">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{% url 'official:projects' %}">Projects</a></li>                
+            <li class="nav-item"><a class="nav-link" href="{% url 'official:add-project' %}">Add Project</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#task" aria-expanded="false" aria-controls="task">
+          <i class="icon-columns menu-icon"></i>
+          <span class="menu-title">Task</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="task">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{% url 'official:projects' %}">Add task</a></li>                
+            <li class="nav-item"><a class="nav-link" href="{% url 'official:add-project' %}">View Task</a></li>
+          </ul>
+        </div>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'official:submission' %}">
           <i class="icon-cog menu-icon"></i>
-          <span class="menu-title">Project</span>
+          <span class="menu-title">Submission Program</span>
         </a>
       </li>
+
+
 
       <li class="nav-item">
         <a class="nav-link" href="pages/widgets/widgets.html">
@@ -41,6 +89,8 @@
           <span class="menu-title">Attendance</span>
         </a>
       </li>
+
+     
 
       <!-- 
       <li class="nav-item">

@@ -1,0 +1,75 @@
+{% extends 'official/partials/base.html' %}
+{% load static %}
+{% block content %}
+
+
+        <!-- <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Project Details</h3>
+                  <h6 class="font-weight-normal mb-0">Ananlysis of checker project details and add new checker</h6>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  
+                    
+
+
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        <div class="card">
+            <div class="card-body">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+                    <h3 class="font-weight-bold">Project Details</h3>
+                    <h6 class="font-weight-normal mb-0">Ananlysis of checker project details and add new checker</h6>
+                  </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="order-listing" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>sl/no</th>
+                                        <th>Project Name</th>
+                                        <th>Checker Name</th>
+                                      
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>DAMAC</td>
+                                        <td>Checker1</td>
+                                  
+                                        <td>
+                                            <label class="badge badge-info">On hold</label>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'official:project-detail' %}" class="btn btn-outline-primary">View</a>
+                                        </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+
+    {% include 'official/partials/footer.html' %}
+    <!-- partial -->
+
+
+
+{% endblock %}
