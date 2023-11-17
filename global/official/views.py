@@ -9,9 +9,7 @@ def checker(request):
     context = {"is_checker": True}
     return render(request, "official/checker.html", context)
 
-def detailer(request):
-    context = {"is_detailer": True}
-    return render(request, "official/detailer.html", context)
+
 
 def login(request):
     return render(request, "official/login.html")
@@ -44,4 +42,26 @@ def projectDetail(request):
     context = {"is_project_detail": True}
     return render(request, "official/project-detail.html", context)
 
+def viewTask(request):
+    context = {"is_viewTask": True}
+    return render(request, "official/view-task.html", context)
 
+def addTask(request):
+    context = {"is_addTask": True}
+    return render(request, "official/add-task.html", context)
+
+def detailer(request):
+    context = {"is_detailer": True}
+    return render(request, "official/detailer.html", context)
+
+def viewDetailer(request):
+    context = {"is_addTask": True}
+    return render(request, "official/view-detailer.html", context)
+
+def viewChecker(request):
+    context = {"is_addTask": True}
+    return render(request, "official/view-checker.html", context)
+
+def addDetailer(request):
+    context = {"is_addTask": True}
+    return render(request, "official/add-detailer.html", context)

@@ -11265,6 +11265,8 @@ progress {
 .table>thead,
 .jsgrid .jsgrid-table>thead {
   vertical-align: bottom;
+  background-color: #140958;
+  color: #fff;
 }
 
 .table> :not(:last-child)> :last-child>*,
@@ -16115,14 +16117,7 @@ fieldset:disabled .wizard>.actions a,
   }
 }
 
-.progress {
-  display: flex;
-  height: 1rem;
-  overflow: hidden;
-  font-size: 0.75rem;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
-}
+
 
 .progress-bar {
   display: flex;

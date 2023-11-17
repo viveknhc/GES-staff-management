@@ -2,12 +2,11 @@
 {% load static %}
 {% block content %}
 
-
 <div class="row grid-margin">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Add New Checker</h4>
+          <h4 class="card-title">Add New Task</h4>
           <form class="cmxform" id="commentForm" method="get" action="#" novalidate="novalidate">
             <fieldset>
               <div class="form-group has-danger">
@@ -19,19 +18,23 @@
                 <input id="cemail" class="form-control" type="email" name="email" required="">
               </div>
               <div class="form-group">
-                <label for="curl">Phone Number</label>
-                <input id="curl" class="form-control" type="phone" name="url">
+                <label for="curl">URL (optional)</label>
+                <input id="curl" class="form-control" type="url" name="url">
               </div>
               <div class="form-group">
-                <label for="ccomment">Username</label>
-                <input id="curl" class="form-control" type="text" name="url">
+                <label for="ccomment">Your comment (required)</label>
+                <textarea id="ccomment" class="form-control" name="comment" required=""></textarea>
               </div>
 
-              <div class="form-group">
-                <label for="ccomment">Password</label>
-                <input id="curl" class="form-control" type="text" name="url">
-              </div>
+              <select class="js-example-basic-single w-100 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                <option value="AL" data-select2-id="3">Alabama</option>
+                <option value="WY" data-select2-id="16">Wyoming</option>
+                <option value="AM" data-select2-id="17">America</option>
+                <option value="CA" data-select2-id="18">Canada</option>
+                <option value="RU" data-select2-id="19">Russia</option>
+              </select>
 
+              
               <input class="btn btn-primary" type="submit" value="Submit">
             </fieldset>
           </form>
@@ -40,4 +43,4 @@
     </div>
   </div>
 
-{% endblock %}
+  {% endblock %}
