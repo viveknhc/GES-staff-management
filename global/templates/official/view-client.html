@@ -1,0 +1,46 @@
+{% extends 'official/partials/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">View Client</h3>
+            <h6 class="font-weight-normal mb-0">List of all Client</h6>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>CLIENT NAME</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>DAMAC</td>
+                                <td>DAMAC</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content-wrapper ends -->
+<!-- partial:../../partials/_footer.html -->
+
+{% include 'official/partials/footer.html' %}
+<!-- partial -->
+
+
+
+{% endblock %}

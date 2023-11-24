@@ -76,13 +76,36 @@
     </li>
 
 
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#add-client" aria-expanded="false"
+        aria-controls="add-client">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title">Clients</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="add-client">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:view-client' %}">View Client</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:add-client' %}">Add Client</a></li>
+        </ul>
+      </div>
+    </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="pages/widgets/widgets.html">
-        <i class="icon-cog menu-icon"></i>
-        <span class="menu-title">Clients</span>
+      <a class="nav-link" data-bs-toggle="collapse" href="#add-target" aria-expanded="false"
+        aria-controls="add-target">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title">Target Analysis</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="add-target">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:view-client' %}">View Target</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:add-client' %}">Add Target</a></li>
+        </ul>
+      </div>
     </li>
+
 
     <li class="nav-item">
       <a class="nav-link" href="pages/widgets/widgets.html">

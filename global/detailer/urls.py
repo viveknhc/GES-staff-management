@@ -6,4 +6,6 @@ app_name = "detailer"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("view-task", views.viewTask, name="view-task"),
+    path("update-task", views.updateTask, name="update-task"),
 ]

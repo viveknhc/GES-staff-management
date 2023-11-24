@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-xqt*xjq^xn#zi#m!$zac)s7fhxv854%rpb!wjl(t!cef_h7_1m
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    "web",
     "official",
     "checker",
     "detailer",
@@ -95,3 +94,5 @@ STATIC_ROOT = BASE_DIR / "assets"
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'official.user'
