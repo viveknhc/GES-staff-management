@@ -24286,7 +24286,7 @@ code {
 }
 
 .accordion.accordion-solid-header .card .card-header a[aria-expanded="true"] {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
   border-radius: 8px;
 }
@@ -24352,7 +24352,7 @@ code {
 }
 
 .accordion.accordion-multi-colored .card:nth-child(1) {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .accordion.accordion-multi-colored .card:nth-child(2) {
@@ -26023,7 +26023,7 @@ code {
 }
 
 .data-icon-card-primary {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
 }
 
@@ -26323,7 +26323,7 @@ code {
 }
 
 .form-check .form-check-label input[type="checkbox"]:checked+.input-helper:before {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-width: 0;
 }
 
@@ -26339,7 +26339,7 @@ code {
 }
 
 .form-check .form-check-label input[type="checkbox"]:checked+a+.input-helper:before {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-width: 0;
 }
 
@@ -26417,7 +26417,7 @@ code {
 }
 
 .form-check .form-check-label input[type="radio"]:checked+.input-helper:before {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-width: 0;
 }
 
@@ -26450,7 +26450,7 @@ code {
 
 .form-check-primary.form-check label input[type="checkbox"]:checked+.input-helper:before,
 .form-check-primary.form-check label input[type="radio"]:checked+.input-helper:before {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .form-check-secondary.form-check label input[type="checkbox"]+.input-helper:before,
@@ -27035,7 +27035,7 @@ select.border-dark.tt-hint:focus {
   top: 50%;
   left: 0;
   margin: -.1em 0 0 0;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   -webkit-transform-origin: 250% 50%;
   transform-origin: 250% 50%;
   -webkit-animation: rota 1.72s linear infinite, opa 5.25s ease-in-out infinite alternate;
@@ -27363,7 +27363,7 @@ select.border-dark.tt-hint:focus {
   display: block;
   width: 30px;
   height: 30px;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .square-box-loader-container {
@@ -27822,7 +27822,7 @@ dl li {
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   z-index: 1;
 }
 
@@ -28323,7 +28323,7 @@ dl li {
 .jsgrid .jsgrid-pager .jsgrid-pager-page .pagination-primary .page-item.active a,
 .pagination-primary .jsgrid .jsgrid-pager .active.jsgrid-pager-page a,
 .jsgrid .jsgrid-pager .pagination-primary .active.jsgrid-pager-page a {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-color: #140958;
 }
 
@@ -28699,7 +28699,7 @@ dl li {
 }
 
 .popover-primary .popover-header {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
   border-bottom: 0;
 }
@@ -28972,7 +28972,7 @@ dl li {
   float: left;
   overflow: hidden;
   width: 100%;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   text-align: center;
   cursor: pointer;
 }
@@ -29305,7 +29305,7 @@ dl li {
 }
 
 .nav-tabs.nav-tabs-vertical-custom {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-radius: 4px;
 }
 
@@ -29826,7 +29826,7 @@ dl li {
 }
 
 .tooltip-primary .tooltip-inner {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
 }
 
@@ -30721,7 +30721,7 @@ body.avgrund-active {
 }
 
 .grid-item {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   margin-bottom: 20px;
   border-radius: 8px;
 }
@@ -30905,7 +30905,7 @@ body.avgrund-active {
 }
 
 .expandable-table thead tr th {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   padding: 10px;
   color: #ffffff;
   font-size: 14px;
@@ -31151,7 +31151,7 @@ table.dataTable tbody td.select-checkbox:after {
   content: "";
   width: 28px;
   height: 28px;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-radius: 4px;
   box-shadow: 3px 3px 6px 0 rgba(147, 127, 201, 0.43);
   -webkit-box-shadow: 3px 3px 6px 0 rgba(147, 127, 201, 0.43);
@@ -31548,7 +31548,7 @@ table.dataTable tbody td.select-checkbox:after {
 }
 
 .fc .fc-event.fc-start {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-radius: 4px;
   border-left: 4px solid #140958;
 }
@@ -31795,7 +31795,7 @@ table.dataTable tbody td.select-checkbox:after {
 }
 
 .noUi-target .noUi-base .noUi-connect {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   box-shadow: none;
 }
 
@@ -31831,7 +31831,7 @@ table.dataTable tbody td.select-checkbox:after {
   margin: auto;
   width: 6px;
   height: 6px;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border-radius: 100%;
 }
 
@@ -31868,19 +31868,19 @@ table.dataTable tbody td.select-checkbox:after {
 
 /* Slider Color variations */
 .slider-primary .noUi-base .noUi-connect {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .slider-primary .noUi-base .noUi-origin {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .slider-primary .noUi-base .noUi-origin .noUi-handle:after {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .slider-primary .noUi-base .noUi-origin .noUi-handle .noUi-tooltip {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
 }
 
@@ -32086,7 +32086,7 @@ table.dataTable tbody td.select-checkbox:after {
 }
 
 .pws_tabs_container ul.pws_tabs_controll li a.pws_tab_active {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #fff;
 }
 
@@ -32255,7 +32255,7 @@ table.dataTable tbody td.select-checkbox:after {
 
 /* Select2 */
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .select2-container--default .select2-selection--single,
@@ -32301,7 +32301,7 @@ table.dataTable tbody td.select-checkbox:after {
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+1) {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+2) {
@@ -32441,7 +32441,7 @@ div.tagsinput {
 }
 
 div.tagsinput span.tag {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   border: 0;
   color: color(white);
   padding: 6px 14px;
@@ -32851,19 +32851,19 @@ div.tagsinput span.tag a {
 }
 
 .wizard>.steps .current a {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
   cursor: default;
 }
 
 .wizard>.steps .current a:hover {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
   cursor: default;
 }
 
 .wizard>.steps .current a:active {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #ffffff;
   cursor: default;
 }
@@ -33442,7 +33442,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav .nav-item.active>.nav-link {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   position: relative;
 }
 
@@ -33474,7 +33474,7 @@ div.tagsinput span.tag a {
 
 .sidebar .nav:not(.sub-menu)>.nav-item:hover>.nav-link,
 .sidebar .nav:not(.sub-menu)>.nav-item:hover[aria-expanded="true"] {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #fff;
 }
 
@@ -33484,12 +33484,12 @@ div.tagsinput span.tag a {
 
 .sidebar .nav:not(.sub-menu)>.nav-item>.nav-link[aria-expanded="true"] {
   border-radius: 8px 8px 0 0;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #fff;
 }
 
 .sidebar .nav:not(.sub-menu)>.nav-item.active {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .sidebar .nav.sub-menu {
@@ -33497,7 +33497,7 @@ div.tagsinput span.tag a {
   margin-top: 0;
   list-style: none;
   padding: 0.25rem 0 0 3.07rem;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   padding-bottom: 12px;
 }
 
@@ -33563,7 +33563,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar-dark .sidebar .nav .nav-item.active>.nav-link {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .sidebar-dark .sidebar .nav .nav-item.active>.nav-link .menu-title,
@@ -33572,7 +33572,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar-dark .sidebar .nav:not(.sub-menu)>.nav-item:hover>.nav-link {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   color: #fff;
 }
 
@@ -33642,7 +33642,8 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper {
-  background: #140958;;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
+  ;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
@@ -34129,7 +34130,7 @@ div.tagsinput span.tag a {
   width: 12px;
   height: 12px;
   border-radius: 100%;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   top: 1px;
   border: 1px solid #ffffff;
 }
@@ -34150,7 +34151,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-primary .navbar-menu-wrapper {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-toggler {
@@ -34374,7 +34375,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-secondary .navbar-menu-wrapper {
@@ -34602,7 +34603,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-success .navbar-menu-wrapper {
@@ -34830,7 +34831,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-info .navbar-menu-wrapper {
@@ -35058,7 +35059,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-warning .navbar-menu-wrapper {
@@ -35286,7 +35287,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper {
@@ -35514,7 +35515,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-light .navbar-menu-wrapper {
@@ -35742,7 +35743,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 .navbar.navbar-dark .navbar-menu-wrapper {
@@ -35970,7 +35971,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-danger .navbar-menu-wrapper .nav-item .nav-link.count-indicator .count {
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
 }
 
 @media (max-width: 991px) {
@@ -36143,7 +36144,7 @@ div.tagsinput span.tag a {
 
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title {
     border-radius: 0 5px 5px 0px;
-    background: #140958;
+    background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   }
 
   .rtl.sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title {
@@ -36177,7 +36178,7 @@ div.tagsinput span.tag a {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    background: #140958;
+    background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
     padding: 0.5rem 1.4rem;
     left: 70px;
     position: absolute;
@@ -36212,7 +36213,7 @@ div.tagsinput span.tag a {
   }
 
   .sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link:hover .menu-title {
-    background: #140958;
+    background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   }
 
   .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link:hover .menu-title {
@@ -36733,7 +36734,7 @@ div.tagsinput span.tag a {
   right: 30px;
   height: 45px;
   width: 45px;
-  background: #140958;
+  background: linear-gradient(98deg, #140958 33.1%, rgba(40, 10, 228, 0.99) 97.39%);
   z-index: 99;
   display: -webkit-flex;
   display: flex;

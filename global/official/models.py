@@ -36,6 +36,7 @@ class User(AbstractUser):
     user_type = models.CharField(choices=USER_TYPE_COICES,max_length=50)
     username = models.CharField(max_length=200,unique=True)
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True,null=True,blank=True)
+    phone = models.TextField(null=True,blank=True)
     is_staff = models.BooleanField(default=True,null=True,blank=True)
     is_active = models.BooleanField(default=True,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
