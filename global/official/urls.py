@@ -10,6 +10,13 @@ urlpatterns = [
     path("logoutuser",views.logoutUser,name="logoutuser"),
     path("index/", views.index, name="index"),
     path("register/", views.register, name="register"),
+    
+    path("add-user/", views.addUser, name="add-user"),
+    path("list-detailer/", views.listDetailer, name="list-detailer"),
+    path("list-checker/", views.listChecker, name="list-checker"),
+    path("view-detailer/", views.viewDetailer, name="view-detailer"),
+    path("view-checker/", views.viewChecker, name="view-checker"),
+    
     # path("checker/", views.checker, name="checker"),
     # path("add-checker/", views.addChecker, name="add-checker"),
     path("projects/", views.projects, name="projects"),
@@ -22,10 +29,6 @@ urlpatterns = [
     path("add-client/", views.addClient, name="add-client"),
     path("view-client/", views.viewClient, name="view-client"),
 
-    path("add-user/", views.addUser, name="add-user"),
-    # path("detailer/", views.detailer, name="detailer"),
-    # path("view-detailer/", views.viewDetailer, name="view-detailer"),
-    path("view-checker/", views.viewChecker, name="view-checker"),
     path("submission/", views.submission, name="submission"),
     path("attendance/", views.attendance, name="attendance"),
 ]

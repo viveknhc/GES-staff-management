@@ -16,16 +16,20 @@
                             <tr>
                                 <th>SL/NO</th>
                                 <th>CLIENT NAME</th>
-                                <th>ACTIONS</th>
+                                <th>PHONE NUMBER</th>
+                                <th>EMAIL</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>DAMAC</td>
-                                <td>DAMAC</td>
 
+                            {% for client in clients %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ client.name }}</td>
+                                <td>{{ client.phone }}</td>
+                                <td>{{ client.email }}</td>
                             </tr>
+                            {% endfor %}
 
                         </tbody>
                     </table>

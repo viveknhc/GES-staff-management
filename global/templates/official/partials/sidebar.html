@@ -8,21 +8,6 @@
       </a>
     </li>
 
-
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
-        aria-controls="form-elements">
-        <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">User</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="form-elements">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="{% url 'official:add-user' %}">Add User</a></li>
-        </ul>
-      </div>
-    </li>
-
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#project" aria-expanded="false" aria-controls="project">
         <i class="icon-columns menu-icon"></i>
@@ -51,7 +36,6 @@
       </div>
     </li>
 
-
     <li class="nav-item">
       <a class="nav-link" href="{% url 'official:submission' %}">
         <i class="icon-cog menu-icon"></i>
@@ -59,6 +43,21 @@
       </a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+        aria-controls="form-elements">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title">User</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="form-elements">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:add-user' %}">Add User</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:list-checker' %}">Checker</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'official:list-detailer' %}">Detailer</a></li>
+        </ul>
+      </div>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#add-client" aria-expanded="false"
@@ -89,7 +88,6 @@
         </ul>
       </div>
     </li>
-
 
     <li class="nav-item">
       <a class="nav-link" href="pages/widgets/widgets.html">

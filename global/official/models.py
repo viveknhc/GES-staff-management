@@ -59,9 +59,23 @@ class Detailer(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     phone = models.IntegerField() 
+    
+    def __str__(self):
+        return self.name
 
 
 class Checker(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     phone = models.IntegerField()
+    
+    def __str__(self):
+        return self.name
+    
+class Client(models.Model):
+    name = models.CharField(max_length=200)
+    phone = models.IntegerField()
+    email = models.EmailField()
+    
+    def __str__(self):
+        return self.name

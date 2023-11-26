@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker
+from .models import User, Detailer, Checker, Client
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 
@@ -92,6 +92,35 @@ def logoutUser(request):
     return redirect("official:login")
 
 
+def addClient(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        client = Client(name=name, phone=phone, email=email)
+        client.save() 
+        messages.success(request, 'Client added successfully.')
+    return render(request, "official/add-client.html")
+
+def listDetailer(request):
+    detailers = Detailer.objects.all()
+    context = {"detailers": detailers}
+    return render(request, "official/list-detailer.html", context)
+
+
+def listChecker(request):
+    checkers = Checker.objects.all()
+    context = {"checkers": checkers}
+    return render(request, "official/list-checker.html", context)
+
+
+def viewClient(request):
+    clients = Client.objects.all()
+    context = {"is_addClient": True,
+               "clients":clients}
+    return render(request, "official/view-client.html", context)
+
+
 def index(request):
     context = {"is_index": True}
     return render(request, "official/index.html", context)
@@ -141,28 +170,20 @@ def viewTaskDetails(request):
     return render(request, "official/view-task-details.html", context)
 
 
-def addClient(request):
-    context = {"is_addClient": True}
-    return render(request, "official/add-client.html", context)
-
-
-def viewClient(request):
-    context = {"is_addClient": True}
-    return render(request, "official/view-client.html", context)
-
-
 # def detailer(request):
 #     return render(request, "official/detailer.html")
 
 
-# def viewDetailer(request):
-#     context = {"is_addTask": True}
-#     return render(request, "official/view-detailer.html", context)
+def viewDetailer(request):
+    context = {"is_addTask": True}
+    return render(request, "official/view-detailer.html", context)
 
 
 def viewChecker(request):
     context = {"is_addTask": True}
     return render(request, "official/view-checker.html", context)
+
+
 
 
 def addDetailer(request):

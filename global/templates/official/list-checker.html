@@ -4,9 +4,9 @@
 <div class="card">
     <div class="card-body">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
-            <h3 class="font-weight-bold">LIST OF Detailer</h3>
-        
-          </div>
+            <h3 class="font-weight-bold">LIST OF CHECKERS</h3>
+
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
@@ -21,8 +21,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                       
-                           
+
+                            {% for checker in checkers %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ checker.name }}</td>
+                                <td>{{ checker.user.phone }}</td>
+                                <td>{{ checker.user.email }}</td>
+                                <td>fdsdsf</td>
+                            </tr>
+                            {% endfor %}
+
                         </tbody>
                     </table>
                 </div>
