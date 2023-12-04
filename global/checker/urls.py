@@ -6,4 +6,6 @@ app_name = "checker"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("project-list",views.projectList,name="project-list")
+    
 ]

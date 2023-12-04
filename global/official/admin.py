@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User,Detailer,Checker,Client
+from .models import User,Detailer,Checker,Client,Project
 
 admin.site.register(User)
 # admin.site.register(Detailer)
@@ -16,3 +16,6 @@ class CheckerAdmin(admin.ModelAdmin):
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     list_display = ("name", "phone","email")
+    
+
+admin.site.register(Project)

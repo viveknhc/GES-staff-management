@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker, Client
+from .models import User, Detailer, Checker, Client,Project
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 
@@ -98,9 +98,10 @@ def addClient(request):
         phone = request.POST['phone']
         email = request.POST['email']
         client = Client(name=name, phone=phone, email=email)
-        client.save() 
+        client.save()
         messages.success(request, 'Client added successfully.')
     return render(request, "official/add-client.html")
+
 
 def listDetailer(request):
     detailers = Detailer.objects.all()
@@ -117,7 +118,7 @@ def listChecker(request):
 def viewClient(request):
     clients = Client.objects.all()
     context = {"is_addClient": True,
-               "clients":clients}
+               "clients": clients}
     return render(request, "official/view-client.html", context)
 
 
@@ -145,14 +146,53 @@ def projects(request):
     return render(request, "official/projects.html", context)
 
 
+from django.http import HttpResponse
+
 def addProject(request):
-    context = {"is_add-project": True}
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        assigned_checker_id = request.POST.get('assigned_checker')
+        assigned_detailer_id = request.POST.get('assigned_detailer')
+        client_id = request.POST.get('client')
+
+        try:
+            assigned_checker = Checker.objects.get(id=int(assigned_checker_id))
+            assigned_detailer = Detailer.objects.get(id=int(assigned_detailer_id))
+            select_client = Client.objects.get(id=int(client_id))
+        except (Checker.DoesNotExist, Detailer.DoesNotExist, ValueError):
+            return HttpResponse("Invalid Checker or Detailer ID")
+
+        Project.objects.create(
+            title=title,
+            description=description,
+            start_date=start_date,
+            end_date=end_date,
+            client=select_client,
+            assigned_checker=assigned_checker,
+            assigned_detailer=assigned_detailer,
+        )
+
+    checker = Checker.objects.all()
+    detailer = Detailer.objects.all()
+    client = Client.objects.all()
+    
+    print(client,'##############3')
+    
+    context = {
+        "is_add_project": True,
+        "checker": checker,
+        "detailer": detailer,
+        "client":client,
+    }
     return render(request, "official/add-project.html", context)
 
 
 def projectDetail(request):
-    context = {"is_project_detail": True}
-    return render(request, "official/project-detail.html", context)
+    pass
+
 
 
 def addTask(request):
@@ -182,8 +222,6 @@ def viewDetailer(request):
 def viewChecker(request):
     context = {"is_addTask": True}
     return render(request, "official/view-checker.html", context)
-
-
 
 
 def addDetailer(request):

@@ -79,3 +79,19 @@ class Client(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+    
+class Project(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    client = models.ForeignKey(Client,on_delete=models.CASCADE)
+    assigned_detailer = models.ForeignKey(Detailer, on_delete=models.CASCADE)
+    assigned_checker = models.ForeignKey(Checker, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.title
+    
+    

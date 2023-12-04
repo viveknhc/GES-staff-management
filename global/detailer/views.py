@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from official.models import User, Detailer, Checker, Client,Project
 
 
 def index(request):
@@ -14,5 +16,12 @@ def updateTask(request):
     return render(request, "detailer/update-task.html", context)
 
 
-
+def ProjectLIst(request):
+    detailer = Detailer.objects.get(user=request.user)
+    assigned_projects = Project.objects.filter(assigned_detailer=detailer)
+    
+    context = {
+        "assigned_projects":assigned_projects
+    }
+    return render(request,'detailer/project-list.html',context)
 

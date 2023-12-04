@@ -8,4 +8,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("view-task", views.viewTask, name="view-task"),
     path("update-task", views.updateTask, name="update-task"),
+    
+    path("project-list", views.ProjectLIst, name="project-list"),
 ]
