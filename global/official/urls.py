@@ -44,4 +44,5 @@ urlpatterns = [
     
     
     path("daily-report/", views.dailyReport, name="daily-report"),
+    path("daily-report-detail/<int:project_id>/", views.dailyReportDetail, name="daily-report-detail"),
 ]

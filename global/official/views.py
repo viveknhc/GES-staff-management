@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker, Client,Project
+from .models import User, Detailer, Checker, Client,Project,ProjectStatus
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+
+
 
 
 def login(request):
@@ -235,4 +237,19 @@ def addDetailer(request):
 
 # DAILY REPORT
 def dailyReport(request):
-    return render(request,"official/daily-report.html")
+    projectList = Project.objects.all()
+    context = {
+        "projectList":projectList
+    }
+    return render(request,"official/daily-report.html",context)
+
+
+def dailyReportDetail(request,project_id):
+    project = get_object_or_404(Project, id=project_id)
+    project_status = ProjectStatus.objects.filter(project=project)
+    
+    context={
+        "project":project,
+        "project_status" : project_status
+    }
+    return render(request,"official/daily-report-detail.html",context)
