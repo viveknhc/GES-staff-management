@@ -1,0 +1,146 @@
+{% extends 'checker/partials/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row grid-margin">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h1>{{ project.title }}</h1>
+                <h3>Client : {{ project.client }}</h3>
+                <p>Description: {{ project.description }}</p>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row grid-margin">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="text-center">
+                    <h3 class="">ADD STATUS</h3>
+                </div>
+
+                <form action="" method="POST" class="form-sample pt-5">
+                    {% csrf_token %}
+                    <input type="hidden" name="project_id" value="{{ project.id }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Status</label>
+                                <div class="col-sm-8">
+                                    <select name="project_status" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="start">Start</option>
+                                        <option value="Ongoing">Ongoing</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Percentage</label>
+                                <div class="col-sm-8">
+                                    <input name="percentage" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-2" for="">Description</label>
+                                <div class="col-sm-10">
+                                    <textarea name="description" class="form-control" id="" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <textarea name="description" class="form-control" id="" rows="5"></textarea>
+                            </div>
+                        </div> -->
+
+
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">Perviews Status</h3>
+        </div>
+
+        {% if project_statuses %}
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>UPDATED DATE</th>
+                                <th>STATUS</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for status in project_statuses %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ status.updated_at }}</td>
+                                <td>{{ status.project_status }}</td>
+                                <td>{{ status.daily_description }}</td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        {% else %}
+        <p>No project statuses available.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

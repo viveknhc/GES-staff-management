@@ -227,3 +227,12 @@ def viewChecker(request):
 def addDetailer(request):
     context = {"is_addTask": True}
     return render(request, "official/add-detailer.html", context)
+
+
+
+
+
+
+# DAILY REPORT
+def dailyReport(request):
+    return render(request,"official/daily-report.html")

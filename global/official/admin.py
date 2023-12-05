@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User,Detailer,Checker,Client,Project
+from .models import User,Detailer,Checker,Client,Project,ProjectStatus
 
 admin.site.register(User)
 # admin.site.register(Detailer)
@@ -19,3 +19,4 @@ class ClientAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Project)
+admin.site.register(ProjectStatus)

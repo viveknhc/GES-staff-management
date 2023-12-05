@@ -31,4 +31,17 @@ urlpatterns = [
 
     path("submission/", views.submission, name="submission"),
     path("attendance/", views.attendance, name="attendance"),
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    #   DAILY REPORT
+    
+    
+    path("daily-report/", views.dailyReport, name="daily-report"),
 ]
