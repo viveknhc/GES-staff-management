@@ -20,15 +20,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    {% for project in projects %}
                                     <tr>
-                                        <td>1</td>
-                                        <td>DAMAC</td>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ project.title }}</td>
                                     
                                         <td>
                                             <a href="{% url 'official:project-detail' %}" class="btn btn-outline-primary">View</a>
                                         </td>
                                     </tr>
                                    
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

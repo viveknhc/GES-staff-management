@@ -9,8 +9,6 @@ def index(request):
 
 
 def projectList(request):
-    hii = request.user
-    print(hii, "#########################")
     checker = Checker.objects.get(user=request.user)
     assigned_projects = Project.objects.filter(assigned_checker=checker)
 

@@ -6,8 +6,6 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 
 
-
-
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -69,26 +67,6 @@ def addUser(request):
     return render(request, "official/add-user.html")
 
 
-# def addUser(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         first_name = request.POST.get('name')
-#         email = request.POST.get('email')
-#         phone = request.POST.get('phone')
-#         usertype = request.POST.get("usertype")
-#         user = User.objects.create(username=username,password=make_password(password),first_name=first_name,email=email,phone=phone,user_type=usertype)
-#         if user.user_type == 'detailer':
-#             Detailer.objects.create(user=user,name = username,phone=phone)
-#         elif user.user_type == 'checker':
-#             Checker.objects.create(user=user,name = username,phone=phone)
-#         else:
-#             return redirect("official:add-user")
-
-#         return redirect("official:add-user")
-
-#     return render(request, "official/add-user.html")
-
 def logoutUser(request):
     logout(request)
     return redirect("official:login")
@@ -144,11 +122,16 @@ def attendance(request):
 
 
 def projects(request):
-    context = {"is_projects": True}
+    projects = Project.objects.all()
+    context = {
+        "projects":projects
+    }
     return render(request, "official/projects.html", context)
 
-
 from django.http import HttpResponse
+
+def projectDetail(request):
+    return render(request,"official/project-detail.html")
 
 def addProject(request):
     if request.method == 'POST':
@@ -192,47 +175,10 @@ def addProject(request):
     return render(request, "official/add-project.html", context)
 
 
-def projectDetail(request):
-    pass
-
-
-
-def addTask(request):
-    context = {"is_addTask": True}
-    return render(request, "official/add-task.html", context)
-
-
-def viewTask(request):
-    context = {"is_viewTask": True}
-    return render(request, "official/view-task.html", context)
-
-
-def viewTaskDetails(request):
-    context = {"is_viewTaskDetails": True}
-    return render(request, "official/view-task-details.html", context)
-
-
-# def detailer(request):
-#     return render(request, "official/detailer.html")
-
-
-def viewDetailer(request):
-    context = {"is_addTask": True}
-    return render(request, "official/view-detailer.html", context)
-
-
-def viewChecker(request):
-    context = {"is_addTask": True}
-    return render(request, "official/view-checker.html", context)
-
 
 def addDetailer(request):
     context = {"is_addTask": True}
     return render(request, "official/add-detailer.html", context)
-
-
-
-
 
 
 # DAILY REPORT
