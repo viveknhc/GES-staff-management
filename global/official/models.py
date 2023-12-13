@@ -75,8 +75,8 @@ class Checker(models.Model):
 
 class Client(models.Model):
     name = models.CharField(max_length=200)
-    phone = models.IntegerField()
-    email = models.EmailField()
+    # phone = models.IntegerField()
+    # email = models.EmailField()
 
     def __str__(self):
         return self.name
@@ -87,6 +87,7 @@ class Project(models.Model):
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
+    submission_date = models.DateField()
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     assigned_detailer = models.ForeignKey(Detailer, on_delete=models.CASCADE)
     assigned_checker = models.ForeignKey(Checker, on_delete=models.CASCADE)

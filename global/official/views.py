@@ -75,9 +75,7 @@ def logoutUser(request):
 def addClient(request):
     if request.method == 'POST':
         name = request.POST['name']
-        phone = request.POST['phone']
-        email = request.POST['email']
-        client = Client(name=name, phone=phone, email=email)
+        client = Client(name=name,)
         client.save()
         messages.success(request, 'Client added successfully.')
     return render(request, "official/add-client.html")
@@ -139,6 +137,7 @@ def addProject(request):
         description = request.POST.get('description')
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
+        submission_date = request.POST.get('submission_date')
         assigned_checker_id = request.POST.get('assigned_checker')
         assigned_detailer_id = request.POST.get('assigned_detailer')
         client_id = request.POST.get('client')
@@ -155,6 +154,7 @@ def addProject(request):
             description=description,
             start_date=start_date,
             end_date=end_date,
+            submission_date=submission_date,
             client=select_client,
             assigned_checker=assigned_checker,
             assigned_detailer=assigned_detailer,

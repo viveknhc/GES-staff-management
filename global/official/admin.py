@@ -15,7 +15,7 @@ class CheckerAdmin(admin.ModelAdmin):
     
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ("name", "phone","email")
+    list_display = ("name",)
     
 
 admin.site.register(Project)
