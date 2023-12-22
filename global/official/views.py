@@ -144,8 +144,12 @@ def projects(request):
     return render(request, "official/projects.html", context)
 
 
-def projectDetail(request):
-    return render(request, "official/project-detail.html")
+def projectDetail(request,project_id):
+    project = get_object_or_404(Project, id=project_id)
+    context = {
+        "project":project
+    }
+    return render(request, "official/project-detail.html",context)
 
 
 def addProject(request):
@@ -217,6 +221,9 @@ def dailyReportDetail(request, project_id):
     }
     return render(request, "official/daily-report-detail.html", context)
 
+
+
+# test
 
 def userList(request):
     usersList = User.objects.filter(user_type__in=['detailer', 'checker'])

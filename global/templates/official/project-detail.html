@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-body">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
-            <h3 class="font-weight-bold">Amitha RK</h3>
+            <h3 class="font-weight-bold">{{ project.title }}</h3>
             <h6 class="font-weight-normal mb-0">Daily Report</h6>
           </div>
         <div class="row">
@@ -32,6 +32,33 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            
+                            <tr>
+                                <td>1</td>
+                 
+                                <td>{{ project.title }}</td>
+                                <td>{{ project.description }}</td>
+                                <td>***</td>
+                                <td>{{ project.start_date}}</td>
+                                <td>{{ project.end_date}}</td>
+                                <td>***</td>
+                                <td>{{ project.assigned_checker}}</td>
+                                <td>***</td>
+                                <td>***</td>
+
+                                <td>{{ project.assigned_checker}}</td>
+
+                                <td>{{ project.submission_date }}</td>
+                                <td>***</td>
+                                <td>{{ project.assigned_detailer }}</td>
+
+                                
+                                
+                            </tr>
+                     
+
+
                         </tbody>
                     </table>
                 </div>
