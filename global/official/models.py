@@ -91,11 +91,8 @@ class Project(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     assigned_detailer = models.ForeignKey(Detailer, on_delete=models.CASCADE)
     assigned_checker = models.ForeignKey(Checker, on_delete=models.CASCADE)
-    
-
     def __str__(self):
         return self.title
-    
     def latest_percentage(self):
         latest_status = self.projectstatus_set.order_by('-updated_at').first()
         return latest_status.percentage if latest_status else 0
@@ -113,3 +110,11 @@ class ProjectStatus(models.Model):
 
     def __str__(self):
         return self.project.title
+
+
+# class SubmissionProgram(models.Model):
+#     submission_date = models.DateField()
+#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    
+#     def __str__(self):
+#         return self.project.title

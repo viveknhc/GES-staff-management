@@ -9277,11 +9277,11 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-input{
+input {
   padding: 0.4375rem 0.75rem !important;
 }
 
-select{
+select {
   padding: 0.4375rem 0.75rem !important;
 }
 
@@ -9350,7 +9350,12 @@ h3,
 
   h3,
   .h3 {
+    color: #140958;
+    font-weight: 800;
+    font-size: 26px;
+    text-transform: uppercase;
     font-size: 1.75rem;
+
   }
 }
 
@@ -26600,10 +26605,10 @@ select.asColorPicker-input,
 select.typeahead,
 select.tt-query,
 select.tt-hint {
-  padding: .4375rem .75rem;
+  padding: 10px 10px !important;
   border: 0;
   outline: 1px solid #CED4DA;
-  color: #c9c8c8;
+  color: #140958;
 }
 
 select.form-control:focus,
@@ -30835,7 +30840,7 @@ body.avgrund-active {
 .swal2-modal .swal2-buttonswrapper .dataTables_wrapper .dataTable .swal2-styled,
 .dataTables_wrapper .dataTable .wizard>.actions a,
 .wizard>.actions .dataTables_wrapper .dataTable a {
-  padding: 0.1rem 1rem;
+  padding: 15px 18px;
   vertical-align: top;
 }
 
@@ -33301,7 +33306,7 @@ div.tagsinput span.tag a {
 }
 
 .content-wrapper {
-  background: #F5F7FF;
+  background: #e1e7ff;
   padding: 2.375rem 2.375rem;
   width: 100%;
   -webkit-flex-grow: 1;
@@ -33643,7 +33648,8 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper {
-  background: #140958;;
+  background: #140958;
+  ;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
@@ -36777,4 +36783,13 @@ div.tagsinput span.tag a {
   }
 }
 
-/*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+.username {
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.client-name {
+  font-weight: 800;
+  color: #ffb100;
+}

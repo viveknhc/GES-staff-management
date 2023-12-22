@@ -24,6 +24,7 @@ urlpatterns = [
 
     path("add-client/", views.addClient, name="add-client"),
     path("view-client/", views.viewClient, name="view-client"),
+    path("view-client-project/<int:client_id>/",views.viewClientProject,name="view-client-project"),
 
     path("submission/", views.submission, name="submission"),
     path("attendance/", views.attendance, name="attendance"),
@@ -41,4 +42,10 @@ urlpatterns = [
     
     path("daily-report/", views.dailyReport, name="daily-report"),
     path("daily-report-detail/<int:project_id>/", views.dailyReportDetail, name="daily-report-detail"),
+    
+    
+    # USER LIST
+    path('user-list/', views.userList, name='user_list'),
+    path('project_list_for_daily_report/<int:user_id>/', views.projectListForDailyReport, name='project_list_for_daily_report'),
+    
 ]

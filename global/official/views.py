@@ -1,9 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker, Client,Project,ProjectStatus
+from .models import User, Detailer, Checker, Client, Project, ProjectStatus
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+from django.db.models import Q
 
 
 def login(request):
@@ -100,8 +102,20 @@ def viewClient(request):
     return render(request, "official/view-client.html", context)
 
 
+def viewClientProject(request, client_id):
+    client = get_object_or_404(Client, pk=client_id)
+    projects = Project.objects.filter(client=client)
+    context = {
+        "projects": projects,
+        "client": client
+    }
+    return render(request, "official/view-client-project.html", context)
+
+
 def index(request):
-    context = {"is_index": True}
+    total_projects = Project.objects.count()
+    context = {"is_index": True,
+               "total_projects": total_projects}
     return render(request, "official/index.html", context)
 
 
@@ -110,7 +124,10 @@ def register(request):
 
 
 def submission(request):
-    context = {"is_submission": True}
+    projectList = Project.objects.all()
+    context = {"is_submission": True,
+               "projectList": projectList
+               }
     return render(request, "official/submission.html", context)
 
 
@@ -122,14 +139,14 @@ def attendance(request):
 def projects(request):
     projects = Project.objects.all()
     context = {
-        "projects":projects
+        "projects": projects
     }
     return render(request, "official/projects.html", context)
 
-from django.http import HttpResponse
 
 def projectDetail(request):
-    return render(request,"official/project-detail.html")
+    return render(request, "official/project-detail.html")
+
 
 def addProject(request):
     if request.method == 'POST':
@@ -144,7 +161,8 @@ def addProject(request):
 
         try:
             assigned_checker = Checker.objects.get(id=int(assigned_checker_id))
-            assigned_detailer = Detailer.objects.get(id=int(assigned_detailer_id))
+            assigned_detailer = Detailer.objects.get(
+                id=int(assigned_detailer_id))
             select_client = Client.objects.get(id=int(client_id))
         except (Checker.DoesNotExist, Detailer.DoesNotExist, ValueError):
             return HttpResponse("Invalid Checker or Detailer ID")
@@ -163,17 +181,16 @@ def addProject(request):
     checker = Checker.objects.all()
     detailer = Detailer.objects.all()
     client = Client.objects.all()
-    
-    print(client,'##############3')
-    
+
+    print(client, '##############3')
+
     context = {
         "is_add_project": True,
         "checker": checker,
         "detailer": detailer,
-        "client":client,
+        "client": client,
     }
     return render(request, "official/add-project.html", context)
-
 
 
 def addDetailer(request):
@@ -185,17 +202,42 @@ def addDetailer(request):
 def dailyReport(request):
     projectList = Project.objects.all()
     context = {
-        "projectList":projectList
+        "projectList": projectList
     }
-    return render(request,"official/daily-report.html",context)
+    return render(request, "official/daily-report.html", context)
 
 
-def dailyReportDetail(request,project_id):
+def dailyReportDetail(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     project_status = ProjectStatus.objects.filter(project=project)
-    
-    context={
-        "project":project,
-        "project_status" : project_status
+
+    context = {
+        "project": project,
+        "project_status": project_status
     }
-    return render(request,"official/daily-report-detail.html",context)
+    return render(request, "official/daily-report-detail.html", context)
+
+
+def userList(request):
+    usersList = User.objects.filter(user_type__in=['detailer', 'checker'])
+    context = {
+        "usersList": usersList
+    }
+    return render(request, "official/user-list.html", context)
+
+def projectListForDailyReport(request, user_id):
+    user = User.objects.get(id=user_id)
+    
+    all_projects = Project.objects.filter(Q(assigned_detailer__user=user) | Q(assigned_checker__user=user))
+
+    # detailer_projects = Project.objects.filter(assigned_detailer__user=user)
+    # checker_projects = Project.objects.filter(assigned_checker__user=user)
+
+    context = {
+        'user': user,
+        'all_projects':all_projects
+        # 'detailer_projects': detailer_projects,
+        # 'checker_projects': checker_projects
+    }
+
+    return render(request, 'official/project-list-for-daily-report.html', context)

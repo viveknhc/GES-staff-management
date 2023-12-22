@@ -16,6 +16,7 @@
                                     <tr>
                                         <th>SL/NO</th>
                                         <th>PROJECT NAME</th>
+                                        <th>STAFF</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -25,6 +26,7 @@
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
                                         <td>{{ project.title }}</td>
+                                        <td>{{ project.assigned_detailer.user.username}}</td>
                                     
                                         <td>
                                             <a href="{% url 'official:daily-report-detail' project.id %}" class="btn btn-outline-primary">View</a>

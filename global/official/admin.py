@@ -18,5 +18,6 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ("name",)
     
 
+# admin.site.register(SubmissionProgram)
 admin.site.register(Project)
 admin.site.register(ProjectStatus)

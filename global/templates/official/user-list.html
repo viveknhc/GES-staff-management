@@ -5,8 +5,8 @@
 <div class="card">
     <div class="card-body">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
-            <h3 class="font-weight-bold">View Client</h3>
-            <h6 class="font-weight-normal mb-0">List of all Client</h6>
+            <h3 class="font-weight-bold">Daily Report</h3>
+
         </div>
         <div class="row">
             <div class="col-12">
@@ -15,18 +15,21 @@
                         <thead>
                             <tr>
                                 <th>SL/NO</th>
-                                <th>CLIENT NAME</th>
-                                <th>PROJECT</th>
-                               
+                            
+                                <th>STAFF</th>
+                                <th>ACTIONS</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            {% for client in clients %}
+                            {% for user in usersList %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td>{{ client.name }}</td>
-                                <td><a href="{% url 'official:view-client-project' client.id %}" class="btn btn-outline-primary">Project View</a></td>
+                                <td>{{ user.username }}</td>
+                                <td>
+                                    <a href="{% url 'official:project_list_for_daily_report' user.id %}"
+                                        class="btn btn-outline-primary">View</a>
+                                </td>
                             </tr>
                             {% endfor %}
 
@@ -37,5 +40,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}

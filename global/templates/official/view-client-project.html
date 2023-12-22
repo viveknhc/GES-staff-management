@@ -5,8 +5,7 @@
 <div class="card">
     <div class="card-body">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
-            <h3 class="font-weight-bold">View Client</h3>
-            <h6 class="font-weight-normal mb-0">List of all Client</h6>
+            <h3 class="font-weight-bold">List of <span class="client-name">{{ client.name }}</span>  Projects</h3>
         </div>
         <div class="row">
             <div class="col-12">
@@ -15,21 +14,23 @@
                         <thead>
                             <tr>
                                 <th>SL/NO</th>
-                                <th>CLIENT NAME</th>
-                                <th>PROJECT</th>
+                                <th>PROJECT NAME</th>
+                                <th>DESCRIPTION</th>
                                
                             </tr>
                         </thead>
                         <tbody>
 
-                            {% for client in clients %}
+                          {% for project in projects %}
                             <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ client.name }}</td>
-                                <td><a href="{% url 'official:view-client-project' client.id %}" class="btn btn-outline-primary">Project View</a></td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{ project.title }}</td>
+                                <td>{{ project.description }}</td>
+                               
                             </tr>
-                            {% endfor %}
 
+                            {% endfor %}
+                         
                         </tbody>
                     </table>
                 </div>

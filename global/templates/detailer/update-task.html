@@ -4,43 +4,93 @@
 
 <div class="row grid-margin">
     <div class="col-lg-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Update Task status</h4>
-          <form class="cmxform" id="commentForm" method="get" action="#" novalidate="novalidate">
-            <fieldset>
-              <div class="form-group has-danger">
-                <label for="cname">Name (required, at least 2 characters)</label>
-                <input id="cname" class="form-control form-control-danger" name="name" minlength="2" type="text" required="" aria-invalid="true"><label id="cname-error" class="error mt-2 text-danger" for="cname">This field is required.</label>
-              </div>
-              <div class="form-group">
-                <label for="cemail">E-Mail (required)</label>
-                <input id="cemail" class="form-control" type="email" name="email" required="">
-              </div>
-              <div class="form-group">
-                <label for="curl">URL (optional)</label>
-                <input id="curl" class="form-control" type="url" name="url">
-              </div>
-              <div class="form-group">
-                <label for="ccomment">Your comment (required)</label>
-                <textarea id="ccomment" class="form-control" name="comment" required=""></textarea>
-              </div>
+        <div class="card">
+            <div class="card-body">
 
-              <select class="js-example-basic-single w-100 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                <option value="AL" data-select2-id="3">Alabama</option>
-                <option value="WY" data-select2-id="16">Wyoming</option>
-                <option value="AM" data-select2-id="17">America</option>
-                <option value="CA" data-select2-id="18">Canada</option>
-                <option value="RU" data-select2-id="19">Russia</option>
-              </select>
+                <h1>{{ project.title }}</h1>
+                <h3>Client : {{ project.client }}</h3>
+                <p>Description: {{ project.description }}</p>
 
-              
-              <input class="btn btn-primary" type="submit" value="Submit">
-            </fieldset>
-          </form>
+
+
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  {% endblock %}
+<div class="row grid-margin">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="text-center">
+                    <h3 class="">ADD STATUS</h3>
+                </div>
+
+                <form action="" method="POST" class="form-sample pt-5">
+                    {% csrf_token %}
+                    <input type="hidden" name="project_id" value="{{ project.id }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Status</label>
+                                <div class="col-sm-8">
+                                    <select name="project_status" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="start">Start</option>
+                                        <option value="Ongoing">Ongoing</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Percentage</label>
+                                <div class="col-sm-8">
+                                    <input name="percentage" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-2" for="">Description</label>
+                                <div class="col-sm-10">
+                                    <textarea name="description" class="form-control" id="" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <textarea name="description" class="form-control" id="" rows="5"></textarea>
+                            </div>
+                        </div> -->
+
+
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

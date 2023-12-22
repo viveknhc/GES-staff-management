@@ -7,7 +7,7 @@ app_name = "detailer"
 urlpatterns = [
     path("", views.index, name="index"),
     path("view-task", views.viewTask, name="view-task"),
-    path("update-task", views.updateTask, name="update-task"),
+    path("update-task/<int:project_id>/", views.updateTask, name="update-task"),
     
     path("project-list", views.ProjectLIst, name="project-list"),
 ]

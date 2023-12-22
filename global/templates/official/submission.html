@@ -20,13 +20,11 @@
                                 <th>No.of sheets</th>
                                 <th>first draft start</th>
                                 <th>first draft complete</th>
-
                                 <th>first check complete</th>
                                 <th>first check Name</th>
                                 <th>Comments</th>
                                 <th>second check complete</th>
                                 <th>second check Name</th>
-
                                 <th>submission date</th>
                                 <th>actual date</th>
                                 <th>Detailer</th>
@@ -36,25 +34,31 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            {% for project in projectList %}
                             <tr>
                                 <td>1</td>
-                                <td>ABC</td>
-                                <td>DMAC</td>
-                                <td>TD L05 SLAB UPDATION,SVG P1&P2 L3&4 UPDATION</td>
-                                <td>3</td>
-                                <td>none</td>
-                                <td>####</td>
-                                <td>05/10/2023</td>
+                                <td>{{ project.client }}</td>
+                                <td>{{ project.project.title }}</td>
+                                <td>{{ project.description }}</td>
+                                <td>***</td>
+                                <td>{{ project.start_date}}</td>
+                                <td>{{ project.end_date}}</td>
+                                <td>***</td>
+                                <td>{{ project.assigned_checker}}</td>
+                                <td>***</td>
+                                <td>***</td>
 
-                                <td>DDM</td>
-                            <td>JSR</td>
-                            <td>05/10/2023</td>
-                            <td>ABJ</td>
-                            <td>05/10/2023</td>
-                            <td>05/10/2023</td>
-                            <td>ADT</td>
+                                <td>{{ project.assigned_checker}}</td>
+
+                                <td>{{ project.submission_date }}</td>
+                                <td>***</td>
+                                <td>{{ project.assigned_detailer }}</td>
+
+                                
+                                
                             </tr>
-                            
+                            {% endfor %}
                           
 
                         </tbody>
