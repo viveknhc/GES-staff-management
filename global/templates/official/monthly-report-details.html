@@ -1,0 +1,56 @@
+{% extends 'official/partials/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">Project Name : {{ project.title }}</h3>
+            <h3 class="font-weight-bold">Detailer Name Name : {{ project.assigned_detailer.user.username}}</h3>
+            <h3 class="font-weight-bold">Checker Name : {{ project.assigned_checker.user.username}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>UPDATED DATE</th>
+                                <th>STATUS</th>
+                                <th>DESCRIPTION</th>
+                                <th>REMARK</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for status in project_status %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ status.updated_at }}</td>
+                                <td>
+                                    {% if status.project_status == 'Ongoing' %}
+                                    <button type="button" class="btn btn-outline-warning btn-fw">Ongoing</button>
+                                    {% elif status.project_status == 'Start' %}
+                                    <button type="button" class="btn btn-outline-info btn-fw">Start</button>
+                                    {% elif status.project_status == 'Completed' %}
+                                    <button type="button" class="btn btn-outline-success btn-fw">Completed</button>
+                                    {% else %}
+                                    <button>Unknown Status</button>
+                                    {% endif %}
+                                </td>
+                                <td>{{ status.daily_description }}</td>
+                                <td>{{ status.percentage }}</td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

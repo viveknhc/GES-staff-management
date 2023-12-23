@@ -28,25 +28,18 @@ urlpatterns = [
     path("submission/", views.submission, name="submission"),
     path("attendance/", views.attendance, name="attendance"),
 
-
-
-
-
-
-
-
-
     #   DAILY REPORT
-
-
     path("daily-report/", views.dailyReport, name="daily-report"),
     path("daily-report-detail/<int:project_id>/",
          views.dailyReportDetail, name="daily-report-detail"),
-
-
     # USER LIST
     path('user-list/', views.userList, name='user_list'),
     path('project_list_for_daily_report/<int:user_id>/',
          views.projectListForDailyReport, name='project_list_for_daily_report'),
+    
+    #MONTHLY REPORT
+    path('monthly-report/', views.monthlyReport, name='monthly-report'),
+    path('monthly-report-detail/', views.monthlyReportDetail, name='monthly-report-detail'),
+    
 
 ]

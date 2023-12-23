@@ -2,13 +2,13 @@
 {% load static %}
 {% block content %}
 
-
+<!-- 
 <div class="card">
     <div class="card-body">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
             <h3 class="font-weight-bold">{{ project.title }}</h3>
             <h6 class="font-weight-normal mb-0">Daily Report</h6>
-          </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
@@ -33,10 +33,10 @@
                         </thead>
                         <tbody>
 
-                            
+
                             <tr>
                                 <td>1</td>
-                 
+
                                 <td>{{ project.title }}</td>
                                 <td>{{ project.description }}</td>
                                 <td>***</td>
@@ -52,20 +52,61 @@
                                 <td>{{ project.submission_date }}</td>
                                 <td>***</td>
                                 <td>{{ project.assigned_detailer }}</td>
-
-                                
-                                
                             </tr>
-                     
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
+
+<div class="row">
+
+    <div class="col-12 col-sm-12 col-md-6 col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="">Project Name : {{ project.title }}</h3>
+                        <h4>Description : {{ project.description }}</h4>
+                    </div>
+                  
+
+                    <div>
+                        <button type="button" class="btn btn-social-icon-text"><i class="icon-pencil"></i>Edit</button>
+                    </div>
+                </div>
+                
+
+                <div class="pt-5">
+                    <div class="card data-icon-card-primary">
+                        <div class="card-body">
+                            <h3 class="text-white">Project Details</h3>
+                            <p class="card-title text-white pt-5">Number 0f Sheet : ***</p>
+                            <p class="card-title text-white">First Drafting Start : {{ project.start_date}}</p>
+                            <p class="card-title text-white">First Drafting Complete : {{ project.end_date}}</p>
+                            <p class="card-title text-white">First Checking Complete : ****</p>
+                            <p class="card-title text-white">First Checking Name : {{ project.assigned_checker}}</p>
+                            <p class="card-title text-white">Commnets Updated : ***</p>
+                            <p class="card-title text-white">Second Checking Complete : ****</p>
+                            <p class="card-title text-white">Second Checking Name : {{ project.assigned_detailer}}</p>
+                            <p class="card-title text-white">Submission Date : {{ project.submission_date }}</p>
+                            <p class="card-title text-white">Actual Date of Submission : ***</p>
+                            <p class="card-title text-white">Detailer : {{ project.assigned_detailer }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
 
 {% endblock %}

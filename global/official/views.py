@@ -221,8 +221,18 @@ def dailyReportDetail(request, project_id):
     }
     return render(request, "official/daily-report-detail.html", context)
 
+# MONTHLY REPORT
+
+def monthlyReport(request):
+    usersList = User.objects.filter(user_type__in=['detailer', 'checker'])
+    context = {
+        "usersList": usersList
+    }
+    return render(request, "official/monthly-report.html", context)
 
 
+def monthlyReportDetail(request):
+    return render(request, "official/monthly-report-details.html")
 # test
 
 def userList(request):
