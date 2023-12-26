@@ -34,8 +34,8 @@ urlpatterns = [
          views.dailyReportDetail, name="daily-report-detail"),
     # USER LIST
     path('user-list/', views.userList, name='user_list'),
-    path('project_list_for_daily_report/<int:user_id>/',
-         views.projectListForDailyReport, name='project_list_for_daily_report'),
+    path('daily-report-new/<int:user_id>/',
+         views.dailyReportNew, name='daily-report-new'),
     
     #MONTHLY REPORT
     path('monthly-report/', views.monthlyReport, name='monthly-report'),

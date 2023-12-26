@@ -27,7 +27,7 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>
-                                    <a href="{% url 'official:project_list_for_daily_report' user.id %}"
+                                    <a href="{% url 'official:daily-report-new' user.id %}"
                                         class="btn btn-outline-primary">View</a>
                                 </td>
                             </tr>

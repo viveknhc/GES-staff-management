@@ -3,14 +3,31 @@
 {% block content %}
 
 
-<h1>{{ user.username }}'s name</h1>
 
-    
-    <ul>
-        {% for project in all_projects %}
-            <li>{{ project.title }}</li>
+<h1>Daily Report for {{ user.username }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Status</th>
+            <th>Percentage</th>
+            <th>Description</th>
+            <th>Last Updated</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in project_statuses %}
+            <tr>
+                <td>{{ status.project.title }}</td>
+                <td>{{ status.project_status }}</td>
+                <td>{{ status.percentage }}%</td>
+                <td>{{ status.daily_description }}</td>
+                <td>{{ status.updated_at }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </tbody>
+</table>
 
 
 {% endblock %}

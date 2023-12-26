@@ -87,6 +87,8 @@ class Project(models.Model):
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
+    assumed_no_of_sheet = models.IntegerField()
+    assumed_wt = models.FloatField()
     submission_date = models.DateField()
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     assigned_detailer = models.ForeignKey(Detailer, on_delete=models.CASCADE)

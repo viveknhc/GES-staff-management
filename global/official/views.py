@@ -14,7 +14,7 @@ def login(request):
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
-        print(user)
+
         if user is not None:
             auth_login(request, user)
             if user.user_type == 'management':
@@ -162,6 +162,8 @@ def addProject(request):
         assigned_checker_id = request.POST.get('assigned_checker')
         assigned_detailer_id = request.POST.get('assigned_detailer')
         client_id = request.POST.get('client')
+        assume_sheet = request.POST.get('assume_sheet')
+        assume_wt = request.POST.get('assume_wt')
 
         try:
             assigned_checker = Checker.objects.get(id=int(assigned_checker_id))
@@ -176,6 +178,8 @@ def addProject(request):
             description=description,
             start_date=start_date,
             end_date=end_date,
+            assumed_no_of_sheet = assume_sheet,
+            assumed_wt = assume_wt,
             submission_date=submission_date,
             client=select_client,
             assigned_checker=assigned_checker,
@@ -185,8 +189,6 @@ def addProject(request):
     checker = Checker.objects.all()
     detailer = Detailer.objects.all()
     client = Client.objects.all()
-
-    print(client, '##############3')
 
     context = {
         "is_add_project": True,
@@ -233,6 +235,8 @@ def monthlyReport(request):
 
 def monthlyReportDetail(request):
     return render(request, "official/monthly-report-details.html")
+
+
 # test
 
 def userList(request):
@@ -242,19 +246,22 @@ def userList(request):
     }
     return render(request, "official/user-list.html", context)
 
-def projectListForDailyReport(request, user_id):
-    user = User.objects.get(id=user_id)
+def dailyReportNew(request, user_id):
     
-    all_projects = Project.objects.filter(Q(assigned_detailer__user=user) | Q(assigned_checker__user=user))
-
-    # detailer_projects = Project.objects.filter(assigned_detailer__user=user)
-    # checker_projects = Project.objects.filter(assigned_checker__user=user)
-
+    userList = get_object_or_404(User, pk=user_id)
+    if userList.user_type == 'detailer':
+            projects = Project.objects.filter(assigned_detailer__user=userList)
+    elif userList.user_type == 'checker':
+            projects = Project.objects.filter(assigned_checker__user=userList)
+    else:
+            projects = []
+            
+    project_statuses = ProjectStatus.objects.filter(project__in=projects)
+        
     context = {
-        'user': user,
-        'all_projects':all_projects
-        # 'detailer_projects': detailer_projects,
-        # 'checker_projects': checker_projects
+        "userList": userList,
+        "projects": projects,
+        "project_statuses" : project_statuses,
     }
 
-    return render(request, 'official/project-list-for-daily-report.html', context)
+    return render(request, 'official/project-list-for-daily-report.html',context)
