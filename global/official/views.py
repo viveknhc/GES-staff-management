@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker, Client, Project, ProjectStatus
+from .models import User, Detailer, Checker, Client, Project, ProjectStatus,MonthlyReport
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.db.models import Q
@@ -28,7 +28,6 @@ def login(request):
 
             else:
                 return redirect('official:login')
-
     return render(request, "official/login.html")
 
 
@@ -65,8 +64,11 @@ def addUser(request):
 
         messages.success(request, 'User added successfully.')
         return redirect("official:add-user")
-
-    return render(request, "official/add-user.html")
+    
+    context = {
+            "is_user":True
+        }
+    return render(request, "official/add-user.html",context)
 
 
 def logoutUser(request):
@@ -85,19 +87,23 @@ def addClient(request):
 
 def listDetailer(request):
     detailers = Detailer.objects.all()
-    context = {"detailers": detailers}
+    context = {
+        "is_user" : True,
+        "detailers": detailers}
     return render(request, "official/list-detailer.html", context)
 
 
 def listChecker(request):
     checkers = Checker.objects.all()
-    context = {"checkers": checkers}
+    context = {
+        "is_user" : True,
+        "checkers": checkers}
     return render(request, "official/list-checker.html", context)
 
 
 def viewClient(request):
     clients = Client.objects.all()
-    context = {"is_addClient": True,
+    context = {"is_clients": True,
                "clients": clients}
     return render(request, "official/view-client.html", context)
 
@@ -139,6 +145,7 @@ def attendance(request):
 def projects(request):
     projects = Project.objects.all()
     context = {
+        "is_project":True,
         "projects": projects
     }
     return render(request, "official/projects.html", context)
@@ -147,6 +154,7 @@ def projects(request):
 def projectDetail(request,project_id):
     project = get_object_or_404(Project, id=project_id)
     context = {
+        "is_project": True,
         "project":project
     }
     return render(request, "official/project-detail.html",context)
@@ -191,7 +199,7 @@ def addProject(request):
     client = Client.objects.all()
 
     context = {
-        "is_add_project": True,
+        "is_project": True,
         "checker": checker,
         "detailer": detailer,
         "client": client,
@@ -208,6 +216,7 @@ def addDetailer(request):
 def dailyReport(request):
     projectList = Project.objects.all()
     context = {
+        "is_daily_report":True,
         "projectList": projectList
     }
     return render(request, "official/daily-report.html", context)
@@ -228,13 +237,18 @@ def dailyReportDetail(request, project_id):
 def monthlyReport(request):
     usersList = User.objects.filter(user_type__in=['detailer', 'checker'])
     context = {
+        "is_monthly_report":True,
         "usersList": usersList
     }
     return render(request, "official/monthly-report.html", context)
 
 
 def monthlyReportDetail(request):
-    return render(request, "official/monthly-report-details.html")
+    
+    context = {
+       "is_monthly_report":True 
+    }
+    return render(request, "official/monthly-report-details.html",context)
 
 
 # test
@@ -247,7 +261,6 @@ def userList(request):
     return render(request, "official/user-list.html", context)
 
 def dailyReportNew(request, user_id):
-    
     userList = get_object_or_404(User, pk=user_id)
     if userList.user_type == 'detailer':
             projects = Project.objects.filter(assigned_detailer__user=userList)
@@ -257,11 +270,29 @@ def dailyReportNew(request, user_id):
             projects = []
             
     project_statuses = ProjectStatus.objects.filter(project__in=projects)
+    
+    sorted_project_statuses = sorted(project_statuses, key=lambda x: x.updated_at, reverse=True)
         
     context = {
         "userList": userList,
         "projects": projects,
-        "project_statuses" : project_statuses,
+        "sorted_project_statuses" : sorted_project_statuses,
+        
     }
 
     return render(request, 'official/project-list-for-daily-report.html',context)
+
+
+def test(request):
+    user = request.user
+
+    # Call the class method to update monthly totals for the user
+    MonthlyReport.update_monthly_totals(user)
+
+    # Retrieve the monthly reports for the user
+    monthly_reports = MonthlyReport.objects.filter(user=user)
+    
+    context = {
+        "monthly_reports":monthly_reports
+    }
+    return render(request,"official/test.html")

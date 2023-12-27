@@ -2,32 +2,72 @@
 {% load static %}
 {% block content %}
 
+{% for report in monthly_reports %}
+<h2>{{ report.project.title }}</h2>
+<p>Monthly Weight: {{ report.monthly_wt_mt }}</p>
+<p>Monthly Sheets: {{ report.monthly_no_sheet }}</p>
+<hr>
+{% endfor %}
 
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">User Name : {{ userList.username }}</h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>UPDATED DATE</th>
+                                <th>CUST/PROJECT</th>
+                                <th>DESCRIPTION</th>
+                          
+                                <th>WT/MT</th>
+                                <th>NO OF SHEET</th>
+                                <th>REMARK</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-<h1>Daily Report for {{ user.username }}</h1>
+                            {% for status in sorted_project_statuses %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ status.updated_at }}</td>
+                                <td> {{ status.project }} </td>
+                                <td>{{ status.daily_description }}</td>
+                                <td>
+                                    {{ status.no_sheet }}
+                                </td>
+                                <td>
+                                    {{ status.wt_mt }}
+                                </td>
+                                <td>{{ status.percentage }}
+                                </td>
+                                <td>
+                                    {% if status.project_status == 'Ongoing' %}
+                                    <button type="button" class="btn btn-outline-warning btn-fw">Ongoing</button>
+                                    {% elif status.project_status == 'Start' %}
+                                    <button type="button" class="btn btn-outline-info btn-fw">Start</button>
+                                    {% elif status.project_status == 'Completed' %}
+                                    <button type="button" class="btn btn-outline-success btn-fw">Completed</button>
+                                    {% else %}
+                                    <button>Unknown Status</button>
+                                    {% endif %}
+                                </td>
+                            </tr>
 
-<table>
-    <thead>
-        <tr>
-            <th>Project</th>
-            <th>Status</th>
-            <th>Percentage</th>
-            <th>Description</th>
-            <th>Last Updated</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for status in project_statuses %}
-            <tr>
-                <td>{{ status.project.title }}</td>
-                <td>{{ status.project_status }}</td>
-                <td>{{ status.percentage }}%</td>
-                <td>{{ status.daily_description }}</td>
-                <td>{{ status.updated_at }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                            {% endfor %}
 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

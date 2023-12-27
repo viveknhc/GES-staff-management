@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import Group, Permission
 
+from django.db.models import Sum
+from django.utils import timezone
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, usename, password, **extra_fields):
@@ -108,15 +111,47 @@ class ProjectStatus(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     percentage = models.IntegerField(default=0)
     daily_description = models.TextField(blank=True, null=True)
+    wt_mt = models.FloatField()
+    no_sheet = models.FloatField()
     updated_at = models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         return self.project.title
 
 
-# class SubmissionProgram(models.Model):
-#     submission_date = models.DateField()
-#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+class MonthlyReport(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    monthly_wt_mt = models.FloatField()
+    monthly_no_sheet = models.FloatField()
     
-#     def __str__(self):
-#         return self.project.title
+    def __str__(self):
+        return self.project.title
+    
+    
+    def update_monthly_totals(cls, user):
+        projects = Project.objects.all()
+
+        for project in projects:
+            monthly_entries = ProjectStatus.objects.filter(
+                project=project,
+                user=user,
+                updated_at__month=timezone.now().month
+            )
+            monthly_totals = monthly_entries.aggregate(
+                total_wt_mt=Sum('wt_mt'),
+                total_no_sheet=Sum('no_sheet')
+            )
+            
+            monthly_wt_mt = monthly_totals['total_wt_mt'] or 0
+            monthly_no_sheet = monthly_totals['total_no_sheet'] or 0
+
+            monthlyReport.objects.update_or_create(
+                user=user,
+                project=project,
+                defaults={
+                    'monthly_wt_mt': monthly_wt_mt,
+                    'monthly_no_sheet': monthly_no_sheet
+                }
+            )

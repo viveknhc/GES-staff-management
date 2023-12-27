@@ -41,5 +41,8 @@ urlpatterns = [
     path('monthly-report/', views.monthlyReport, name='monthly-report'),
     path('monthly-report-detail/', views.monthlyReportDetail, name='monthly-report-detail'),
     
+     #TEST
+
+     path('test/', views.test, name='test'),    
 
 ]
