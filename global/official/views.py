@@ -2,10 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker, Client, Project, ProjectStatus,MonthlyReport
+from .models import User, Detailer, Checker, Client, Project, ProjectStatus, MonthlyReport
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.db.models import Q
+from datetime import datetime, timedelta
+
+from django.db.models import Sum
+from django.utils import timezone
 
 
 def login(request):
@@ -64,11 +68,11 @@ def addUser(request):
 
         messages.success(request, 'User added successfully.')
         return redirect("official:add-user")
-    
+
     context = {
-            "is_user":True
-        }
-    return render(request, "official/add-user.html",context)
+        "is_user": True
+    }
+    return render(request, "official/add-user.html", context)
 
 
 def logoutUser(request):
@@ -88,7 +92,7 @@ def addClient(request):
 def listDetailer(request):
     detailers = Detailer.objects.all()
     context = {
-        "is_user" : True,
+        "is_user": True,
         "detailers": detailers}
     return render(request, "official/list-detailer.html", context)
 
@@ -96,7 +100,7 @@ def listDetailer(request):
 def listChecker(request):
     checkers = Checker.objects.all()
     context = {
-        "is_user" : True,
+        "is_user": True,
         "checkers": checkers}
     return render(request, "official/list-checker.html", context)
 
@@ -130,7 +134,10 @@ def register(request):
 
 
 def submission(request):
-    projectList = Project.objects.all()
+    two_days_ago = datetime.now() - timedelta(days=-3)
+    projectList = Project.objects.filter(submission_date__lte=two_days_ago)
+
+    # projectList = Project.objects.all()
     context = {"is_submission": True,
                "projectList": projectList
                }
@@ -145,19 +152,19 @@ def attendance(request):
 def projects(request):
     projects = Project.objects.all()
     context = {
-        "is_project":True,
+        "is_project": True,
         "projects": projects
     }
     return render(request, "official/projects.html", context)
 
 
-def projectDetail(request,project_id):
+def projectDetail(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     context = {
         "is_project": True,
-        "project":project
+        "project": project
     }
-    return render(request, "official/project-detail.html",context)
+    return render(request, "official/project-detail.html", context)
 
 
 def addProject(request):
@@ -186,8 +193,8 @@ def addProject(request):
             description=description,
             start_date=start_date,
             end_date=end_date,
-            assumed_no_of_sheet = assume_sheet,
-            assumed_wt = assume_wt,
+            assumed_no_of_sheet=assume_sheet,
+            assumed_wt=assume_wt,
             submission_date=submission_date,
             client=select_client,
             assigned_checker=assigned_checker,
@@ -213,45 +220,45 @@ def addDetailer(request):
 
 
 # DAILY REPORT
-def dailyReport(request):
-    projectList = Project.objects.all()
-    context = {
-        "is_daily_report":True,
-        "projectList": projectList
-    }
-    return render(request, "official/daily-report.html", context)
+# def dailyReport(request):
+#     projectList = Project.objects.all()
+#     context = {
+#         "is_daily_report":True,
+#         "projectList": projectList
+#     }
+#     return render(request, "official/daily-report.html", context)
 
 
-def dailyReportDetail(request, project_id):
-    project = get_object_or_404(Project, id=project_id)
-    project_status = ProjectStatus.objects.filter(project=project)
+# def dailyReportDetail(request, project_id):
+#     project = get_object_or_404(Project, id=project_id)
+#     project_status = ProjectStatus.objects.filter(project=project)
 
-    context = {
-        "project": project,
-        "project_status": project_status
-    }
-    return render(request, "official/daily-report-detail.html", context)
+#     context = {
+#         "project": project,
+#         "project_status": project_status
+#     }
+#     return render(request, "official/daily-report-detail.html", context)
 
 # MONTHLY REPORT
 
 def monthlyReport(request):
     usersList = User.objects.filter(user_type__in=['detailer', 'checker'])
     context = {
-        "is_monthly_report":True,
+        "is_monthly_report": True,
         "usersList": usersList
     }
     return render(request, "official/monthly-report.html", context)
 
 
 def monthlyReportDetail(request):
-    
+
     context = {
-       "is_monthly_report":True 
+        "is_monthly_report": True
     }
-    return render(request, "official/monthly-report-details.html",context)
+    return render(request, "official/monthly-report-details.html", context)
 
 
-# test
+# DAILY REPORT
 
 def userList(request):
     usersList = User.objects.filter(user_type__in=['detailer', 'checker'])
@@ -260,37 +267,50 @@ def userList(request):
     }
     return render(request, "official/user-list.html", context)
 
-def dailyReportNew(request, user_id):
-   # Get the user for whom the daily report is being viewed
-    user = get_object_or_404(User.objects.filter(user_type__in=['detailer', 'checker']), pk=user_id)
 
-    # Retrieve the Detailer or Checker instance associated with the user (if applicable)
+def dailyReportNew(request, user_id):
+    user = get_object_or_404(User.objects.filter(
+        user_type__in=['detailer', 'checker']), pk=user_id)
     detailer = user.detailer if user.user_type == 'detailer' else None
     checker = user.checker if user.user_type == 'checker' else None
-
-    # Filter projects based on the user type
     if user.user_type == 'detailer':
         projects = Project.objects.filter(assigned_detailer=detailer)
     elif user.user_type == 'checker':
         projects = Project.objects.filter(assigned_checker=checker)
     else:
         projects = []
+    project_statuses = ProjectStatus.objects.filter(
+        project__in=projects, updated_by=user)
+    sorted_project_statuses = sorted(
+        project_statuses, key=lambda x: x.updated_at, reverse=True)
 
-    # Filter project statuses based on the user and the user who updated the status
-    project_statuses = ProjectStatus.objects.filter(project__in=projects, updated_by=user)
+    # Create a dictionary to store monthly totals
+    monthly_totals = {}
 
-    # Sort project statuses by updated_at in descending order
-    sorted_project_statuses = sorted(project_statuses, key=lambda x: x.updated_at, reverse=True)
+    # Loop through each ProjectStatus and calculate totals for each month
+    for status in project_statuses:
+        month_key = status.updated_at.strftime('%B %Y')
 
-        
+        if month_key not in monthly_totals:
+            monthly_totals[month_key] = {
+                "total_wt_mt": status.wt_mt,
+                "total_no_sheet": status.no_sheet,
+            }
+        else:
+            monthly_totals[month_key]["total_wt_mt"] += status.wt_mt
+            monthly_totals[month_key]["total_no_sheet"] += status.no_sheet
+
+    # Sort the months by date (chronologically)
+    sorted_months = sorted(monthly_totals.keys(
+    ), key=lambda x: timezone.datetime.strptime(x, '%B %Y'))
+
     context = {
         "user": user,
-        "projects": projects,
-        "sorted_project_statuses" : sorted_project_statuses,
-        
+        "sorted_project_statuses": sorted_project_statuses,
+        "monthly_totals": [(month, monthly_totals[month]) for month in sorted_months],
     }
 
-    return render(request, 'official/project-list-for-daily-report.html',context)
+    return render(request, 'official/project-list-for-daily-report.html', context)
 
 
 def test(request):
@@ -301,8 +321,12 @@ def test(request):
 
     # Retrieve the monthly reports for the user
     monthly_reports = MonthlyReport.objects.filter(user=user)
-    
+
     context = {
-        "monthly_reports":monthly_reports
+        "monthly_reports": monthly_reports
     }
-    return render(request,"official/test.html")
+    return render(request, "official/test.html")
+
+
+def header(request):
+    return render(request, "official/")
