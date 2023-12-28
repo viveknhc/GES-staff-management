@@ -17,7 +17,6 @@ def updateTask(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     project_statuses = ProjectStatus.objects.filter(project=project)
     
-    
     if request.method == 'POST':
         project_id = request.POST['project_id']
         project_status = request.POST['project_status']
@@ -25,6 +24,7 @@ def updateTask(request, project_id):
         description = request.POST['description']
         no_sheet = request.POST['no_sheet']
         wt_mt = request.POST['wt_mt']
+        updated_by_user = request.user
 
         project_status = ProjectStatus(
             project_status=project_status,
@@ -32,7 +32,9 @@ def updateTask(request, project_id):
             percentage=percentage,
             daily_description=description,
             no_sheet = no_sheet,
-            wt_mt = wt_mt
+            wt_mt = wt_mt,
+            updated_by=updated_by_user
+            
         )
         project_status.save()
         return redirect('detailer:update-task', project_id=project_id)

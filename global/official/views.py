@@ -261,20 +261,30 @@ def userList(request):
     return render(request, "official/user-list.html", context)
 
 def dailyReportNew(request, user_id):
-    userList = get_object_or_404(User, pk=user_id)
-    if userList.user_type == 'detailer':
-            projects = Project.objects.filter(assigned_detailer__user=userList)
-    elif userList.user_type == 'checker':
-            projects = Project.objects.filter(assigned_checker__user=userList)
+   # Get the user for whom the daily report is being viewed
+    user = get_object_or_404(User.objects.filter(user_type__in=['detailer', 'checker']), pk=user_id)
+
+    # Retrieve the Detailer or Checker instance associated with the user (if applicable)
+    detailer = user.detailer if user.user_type == 'detailer' else None
+    checker = user.checker if user.user_type == 'checker' else None
+
+    # Filter projects based on the user type
+    if user.user_type == 'detailer':
+        projects = Project.objects.filter(assigned_detailer=detailer)
+    elif user.user_type == 'checker':
+        projects = Project.objects.filter(assigned_checker=checker)
     else:
-            projects = []
-            
-    project_statuses = ProjectStatus.objects.filter(project__in=projects)
-    
+        projects = []
+
+    # Filter project statuses based on the user and the user who updated the status
+    project_statuses = ProjectStatus.objects.filter(project__in=projects, updated_by=user)
+
+    # Sort project statuses by updated_at in descending order
     sorted_project_statuses = sorted(project_statuses, key=lambda x: x.updated_at, reverse=True)
+
         
     context = {
-        "userList": userList,
+        "user": user,
         "projects": projects,
         "sorted_project_statuses" : sorted_project_statuses,
         

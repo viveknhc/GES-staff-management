@@ -2,12 +2,7 @@
 {% load static %}
 {% block content %}
 
-{% for report in monthly_reports %}
-<h2>{{ report.project.title }}</h2>
-<p>Monthly Weight: {{ report.monthly_wt_mt }}</p>
-<p>Monthly Sheets: {{ report.monthly_no_sheet }}</p>
-<hr>
-{% endfor %}
+
 
 <div class="card">
     <div class="card-body">

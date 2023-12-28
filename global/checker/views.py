@@ -23,12 +23,18 @@ def projectDetail(request, project_id):
         project_status = request.POST['project_status']
         percentage = request.POST['percentage']
         description = request.POST['description']
+        no_sheet = request.POST['no_sheet']
+        wt_mt = request.POST['wt_mt']
+        updated_by_user = request.user
 
         project_status = ProjectStatus(
             project_status=project_status,
             project_id=project_id,
             percentage=percentage,
-            daily_description=description
+            daily_description=description,
+            no_sheet = no_sheet,
+            wt_mt = wt_mt,
+            updated_by=updated_by_user
         )
         project_status.save()
         return redirect('checker:project-detail', project_id=project_id)
