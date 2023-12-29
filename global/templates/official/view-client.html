@@ -17,16 +17,24 @@
                                 <th>SL/NO</th>
                                 <th>CLIENT NAME</th>
                                 <th>PROJECT</th>
-                               
+                                <th>ACTION</th>
+
                             </tr>
                         </thead>
                         <tbody>
 
                             {% for client in clients %}
-                            <tr>
+                            <tr id="client_row_{{ client.id }}">
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ client.name }}</td>
-                                <td><a href="{% url 'official:view-client-project' client.id %}" class="btn btn-outline-primary">Project View</a></td>
+                                <td><a href="{% url 'official:view-client-project' client.id %}"
+                                        class="btn btn-outline-primary">Project View</a></td>
+
+                                <td>
+                                    <button class="btn btn-danger deleteButton"
+                                        data-client-id="{{ client.id }}">Delete</button>
+                                </td>
+                                </td>
                             </tr>
                             {% endfor %}
 
@@ -37,5 +45,38 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteButtons = document.querySelectorAll(".deleteButton");
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const clientId = button.getAttribute("data-client-id");
+
+                // Send an AJAX request to delete the client
+                fetch(`/delete-client/${clientId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}",
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === "Client deleted successfully") {
+                            // Remove the deleted client row from the table
+                            const row = document.getElementById(`client_row_${clientId}`);
+                            row.parentNode.removeChild(row);
+                        } else {
+                            console.error("Failed to delete client");
+                        }
+                    })
+                    .catch(error => console.error(error));
+            });
+        });
+    });
+</script>
 
 {% endblock %}

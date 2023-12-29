@@ -29,6 +29,7 @@ urlpatterns = [
     path("view-client/", views.viewClient, name="view-client"),
     path("view-client-project/<int:client_id>/",
          views.viewClientProject, name="view-client-project"),
+     path('delete-client/<int:client_id>/', views.delete_client, name='delete_client'),
 
     # SUBMISSION PROGRAM
     path("submission/", views.submission, name="submission"),

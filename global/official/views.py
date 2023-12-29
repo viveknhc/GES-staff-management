@@ -111,6 +111,12 @@ def viewClient(request):
                "clients": clients}
     return render(request, "official/view-client.html", context)
 
+def delete_client(request, client_id):
+    client = get_object_or_404(Client, id=client_id)
+    client.delete()
+    return JsonResponse({'message': 'Client deleted successfully'})
+
+
 
 def viewClientProject(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
