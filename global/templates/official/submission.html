@@ -28,8 +28,7 @@
                                 <th>submission date</th>
                                 <th>actual date</th>
                                 <th>Detailer</th>
-
-
+                                <th>ACTION</th>
 
                             </tr>
                         </thead>
@@ -54,13 +53,38 @@
                                 <td>{{ project.submission_date }}</td>
                                 <td>***</td>
                                 <td>{{ project.assigned_detailer }}</td>
-
-                                
-                                
+                                <td>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#submissionEdit{{ project.id }}">
+                                        <i class="ti-pencil-alt"></i>
+                                    </button>
+                                </td>
+                                <div class="modal fade" id="submissionEdit{{ project.id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="submissionEditForm{{ project.id }}" method="POST" action="">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label>Project Name</label>
+                                                        <input type="text" class="form-control"
+                                                            id="projectName{{ project.id }}" name="projectName">
+                                                    </div>
+                                                    <!-- <button type="button" onclick="updateProject({{ project.id }})"
+                                                        class="btn btn-primary">Update</button> -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                             {% endfor %}
-                          
-
                         </tbody>
                     </table>
                 </div>
@@ -68,4 +92,27 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {     
+        function getProjectDetails(projectId) {
+            $.ajax({
+                type: 'GET',
+                url: '/submission/get_submission_detail/' + projectSubmissionId + '/',
+                success: function (data) {
+                    $('#submissionEditForm' + projectId).attr('data-project-id', projectId);
+                    $('#projectName' + projectId).val(data.title);
+                    $('#submissionEdit' + projectId).modal('show');
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+    });
+</script>
+
+</script>
 {% endblock %}

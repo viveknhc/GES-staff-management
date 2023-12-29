@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 
 from django.db.models import Sum
 from django.utils import timezone
-
+from django.http import JsonResponse
 
 def login(request):
     if request.method == 'POST':
@@ -132,16 +132,37 @@ def index(request):
 def register(request):
     return render(request, "official/register.html")
 
+# SUBMISSION PROGRAM
 
 def submission(request):
-    two_days_ago = datetime.now() - timedelta(days=-3)
-    projectList = Project.objects.filter(submission_date__lte=two_days_ago)
-
-    # projectList = Project.objects.all()
+    two_days_ago = datetime.now() - timedelta(days=2)
+    projectList = Project.objects.filter(submission_date__gte=two_days_ago)
     context = {"is_submission": True,
                "projectList": projectList
                }
     return render(request, "official/submission.html", context)
+
+def GetSubmissionDetail(request, projectSubmissionId):
+    project = get_object_or_404(Project, id=projectSubmissionId)
+    
+    data = {
+        'title': project.title,
+    }
+    
+    print(project.title, "########")
+    return JsonResponse(data)
+
+def edit_Submission(request, projectSubmissionId):
+    if request.method == 'POST':
+        student = get_object_or_404(Project, id=projectSubmissionId)
+        
+        student.title = request.POST.get('projectName')
+        student.save()
+
+        return JsonResponse({'message': 'Student updated successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+
 
 
 def attendance(request):

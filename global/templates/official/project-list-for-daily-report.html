@@ -25,9 +25,9 @@
                 <div class="card card-light-danger">
                     <div class="card-body">
                         {% for month, totals in monthly_totals %}
-                        <h4 class="mb-4">Total No. Sheet ({{ month }}): {{ totals.total_no_sheet }}</h4>
-                        <h4 class="">Total WT/MT ({{ month }}): {{ totals.total_wt_mt }}47033</h4>
-                        
+                        <h4 class="mb-4">Total No. Sheet ({{ month }}): {{ totals.total_wt_mt }}</h4>
+                        <h4 class="">Total WT/MT ({{ month }}): {{ totals.total_no_sheet }}</h4>
+
                         {% endfor %}
                     </div>
                 </div>
