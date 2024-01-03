@@ -45,17 +45,30 @@ def projectDetail(request, project_id):
     return render(request, "checker/project-detail.html", context)
 
 
-def header(request):
-    checker = Checker.objects.get(user=request.user)
-    assigned_projects = Project.objects.filter(assigned_checker=checker)
-    context = {
-        "assigned_projects" : assigned_projects
-    }
-    return render(request,"checker/project-detail.html", context)
+# def header(request):
+#     checker = Checker.objects.get(user=request.user)
+#     assigned_projects = Project.objects.filter(assigned_checker=checker)
+#     context = {
+#         "assigned_projects" : assigned_projects
+#     }
+#     return render(request,"checker/project-detail.html", context)
 
-# class MarkAsSeenView(View):
-#     def post(self, request, pk):
-#         project = get_object_or_404(Project, pk=pk)
-#         project.seen = True
-#         project.save()
-#         return JsonResponse({'success': True})
+# def mark_as_seen(request, pk):
+#     project = get_object_or_404(Project, pk=pk)
+#     response_data = {'message': 'Project marked as seen successfully'}
+#     return JsonResponse(response_data)
+
+
+def mark_as_seen(request):
+    if request.method == 'POST' and request.is_ajax():
+        project_id = request.POST.get('project_id')
+        project = get_object_or_404(Project, id=project_id)
+
+        # Implement your logic to mark the project as seen (e.g., update a 'seen' field)
+        project.seen = True
+        project.save()
+        print("seened")
+
+        return JsonResponse({'message': 'Project marked as seen successfully'})
+
+    return JsonResponse({'error': 'Invalid request'})

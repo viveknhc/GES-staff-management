@@ -90,9 +90,16 @@ class Project(models.Model):
     assumed_no_of_sheet = models.IntegerField()
     assumed_wt = models.FloatField()
     submission_date = models.DateField()
+    first_check_complete = models.DateField(default=None,blank=True, null=True)
+    comments = models.TextField(default=None,blank=True, null=True)
+    second_check_complete = models.DateField(default=None,blank=True, null=True)
+    actual_submission = models.DateField(default=None,blank=True, null=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     assigned_detailer = models.ForeignKey(Detailer, on_delete=models.CASCADE)
     assigned_checker = models.ForeignKey(Checker, on_delete=models.CASCADE)
+
+
+
     def __str__(self):
         return self.title
     def latest_percentage(self):

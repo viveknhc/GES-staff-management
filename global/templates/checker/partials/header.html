@@ -1,6 +1,5 @@
 {% load static %}
 
-<!-- partial:partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
     <a class="navbar-brand brand-logo me-5" href="{% url 'checker:index' %}"><img
@@ -14,7 +13,6 @@
     </button>
 
     <ul class="navbar-nav navbar-nav-right">
-
       <li class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
           data-bs-toggle="dropdown">
@@ -26,21 +24,62 @@
           aria-labelledby="notificationDropdown">
           <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
 
+          {% if assigned_projects %}
           {% for notify in assigned_projects %}
-          <a href="{% url 'checker:project-detail' notify.id %}" class="dropdown-item preview-item">
+          <a class="dropdown-item preview-item" id="project{{ notify.id }}" data-project-id="{{ notify.id }}"
+            data-url="{% url 'checker:project-detail' notify.id %}">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-success">
                 <i class="ti-server mx-0"></i>
               </div>
             </div>
             <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">{{ notify.title }}</h6>
-              <p class="font-weight-light small-text mb-0 text-muted">
-                Just now
+              <h6 class="preview-subject font-weight-normal seen" id="project-{{ notify.id }}">{{ notify.title }}</h6>
+              <!-- Add any additional information you want to display -->
+              <p class="mb-0 text-muted">
+                Assigned on {{ notify.assignment_date|date:"F d, Y" }}
               </p>
             </div>
           </a>
           {% endfor %}
+          {% else %}
+          <p class="dropdown-item preview-item">There are no notifications.</p>
+          {% endif %}
+
+
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+          <script>
+            $(document).ready(function () {
+              $('.preview-item').on('click', function (e) {
+                e.preventDefault();
+                var projectId = $(this).data('project-id');
+                var url = $(this).data('url');
+
+                $.ajax({
+                  type: 'POST',
+                  url: 'checker/mark_as_seen/',
+                  data: {
+                    project_id: projectId
+                  },
+                  success: function (data) {
+                    $('#project' + projectId).remove();
+                  },
+
+                  error: function (xhr, textStatus, errorThrown) {
+                    console.error('Error: ' + textStatus, errorThrown);
+                  }
+                });
+
+                window.location.href = url;
+              });
+            });
+          </script>
+
+
+          </head>
+
+
 
           {% comment %}
 
@@ -76,7 +115,7 @@
           <img src="{% static 'checker/images/faces/face28.jpg' %}" alt="profile" />
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-       
+
 
           {% if user.is_authenticated %}
           <a href="{% url 'official:logoutuser' %}" class="dropdown-item">

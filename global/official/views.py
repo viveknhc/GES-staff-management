@@ -147,27 +147,6 @@ def submission(request):
 
 
 
-def GetSubmissionDetail(request, projectSubmissionId):
-    project = get_object_or_404(Project, id=projectSubmissionId)
-    
-    data = {
-        'title': project.title,
-    }
-    
-    print(project.title, "########")
-    return JsonResponse(data)
-
-def edit_Submission(request, projectSubmissionId):
-    if request.method == 'POST':
-        student = get_object_or_404(Project, id=projectSubmissionId)
-        
-        student.title = request.POST.get('projectName')
-        student.save()
-
-        return JsonResponse({'message': 'Student updated successfully'})
-    else:
-        return JsonResponse({'error': 'Invalid request method'})
-
 
 
 def attendance(request):
@@ -351,5 +330,5 @@ def test(request):
     return render(request, "official/test.html")
 
 
-def header(request):
-    return render(request, "official/")
+# def header(request):
+#     return render(request, "official/partials/header.html")

@@ -31,10 +31,7 @@ urlpatterns = [
     # SUBMISSION PROGRAM
     path("submission/", views.submission, name="submission"),
     path("attendance/", views.attendance, name="attendance"),
-    path("get_submission_detail/<int:projectSubmissionId>/", views.GetSubmissionDetail,
-         name="get_submission_detail"),
-    path('edit_submissionProject/<int:projectSubmissionId>/',
-         views.edit_Submission, name='edit_Submission'),
+
 
 
     # DAILY REPORT WORKING

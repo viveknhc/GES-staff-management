@@ -25,7 +25,7 @@
                                 <th>Comments</th>
                                 <th>second <br> check complete</th>
                                 <th>second <br> check Name</th>
-                                <th>submission  date</th>
+                                <th>submission date</th>
                                 <th>actual <br> date of submission</th>
                                 <th>Detailer</th>
                                 <th>ACTION</th>
@@ -43,25 +43,26 @@
                                 <td>{{ project.assumed_no_of_sheet }}</td>
                                 <td>{{ project.start_date}}</td>
                                 <td>{{ project.end_date}}</td>
-                                <td>***</td>
+                                <td>{{ project.first_check_complete}}</td>
                                 <td>{{ project.assigned_checker}}</td>
-                                <td>***</td>
-                                <td>***</td>
+                                <td>{{ project.comments}}</td>
+                                <td>{{ project.first_check_complete}}</td>
 
                                 <td>{{ project.assigned_checker}}</td>
 
                                 <td>{{ project.submission_date }}</td>
-                                <td>***</td>
+                                <td>{{ project.actual_submission }}</td>
                                 <td>{{ project.assigned_detailer }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#submissionEdit{{ project.id }}">
+                                        data-bs-target="#submissionEdit">
                                         <i class="ti-pencil-alt"></i>
                                     </button>
                                 </td>
-                                <div class="modal fade" id="submissionEdit{{ project.id }}" tabindex="-1"
+
+                                <div class="modal fade" id="submissionEdit" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -69,50 +70,121 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="submissionEditForm{{ project.id }}" method="POST" action="">
+
+
+                                                <form id="submissionEditForm" method="POST" action="">
                                                     {% csrf_token %}
-                                                    <div class="form-group">
-                                                        <label>Project Name</label>
-                                                        <input type="text" class="form-control"
-                                                            id="projectName{{ project.id }}" name="projectName">
+
+                                                    <div class="row">
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Project id</label>
+                                                                <input id="project_id" type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Client</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Project</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Description</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>No.of sheets</label>
+                                                                <input type="number" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>First draft start</label>
+                                                                <input type="date" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>First draft Complete</label>
+                                                                <input type="date" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+
+                                                            <div class="form-group">
+                                                                <label>First Check Name</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Comments</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Second Check Complete</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Second Check Name</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Submission date</label>
+                                                                <input type="date" class="form-control">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Actual Date of submission</label>
+                                                                <input type="date" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Detailer</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <!-- <button type="button" onclick="updateProject({{ project.id }})"
-                                                        class="btn btn-primary">Update</button> -->
-                                                </form>
+                                                    <button class="btn btn-danger">Update</button>
                                             </div>
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
                 </div>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {     
-        function getProjectDetails(projectId) {
-            $.ajax({
-                type: 'GET',
-                url: '/submission/get_submission_detail/' + projectSubmissionId + '/',
-                success: function (data) {
-                    $('#submissionEditForm' + projectId).attr('data-project-id', projectId);
-                    $('#projectName' + projectId).val(data.title);
-                    $('#submissionEdit' + projectId).modal('show');
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
 
-    });
-</script>
 
 </script>
 {% endblock %}
