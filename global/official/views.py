@@ -12,6 +12,8 @@ from django.db.models import Sum
 from django.utils import timezone
 from django.http import JsonResponse
 
+# login
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -34,7 +36,7 @@ def login(request):
                 return redirect('official:login')
     return render(request, "official/login.html")
 
-
+# user adding/Register User
 def addUser(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -74,12 +76,12 @@ def addUser(request):
     }
     return render(request, "official/add-user.html", context)
 
-
+# logout
 def logoutUser(request):
     logout(request)
     return redirect("official:login")
 
-
+# add client
 def addClient(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -88,7 +90,7 @@ def addClient(request):
         messages.success(request, 'Client added successfully.')
     return render(request, "official/add-client.html")
 
-
+# listing all the detailer
 def listDetailer(request):
     detailers = Detailer.objects.all()
     context = {
@@ -96,7 +98,7 @@ def listDetailer(request):
         "detailers": detailers}
     return render(request, "official/list-detailer.html", context)
 
-
+# list all the checker
 def listChecker(request):
     checkers = Checker.objects.all()
     context = {
@@ -104,20 +106,20 @@ def listChecker(request):
         "checkers": checkers}
     return render(request, "official/list-checker.html", context)
 
-
+# view all the client
 def viewClient(request):
     clients = Client.objects.all()
     context = {"is_clients": True,
                "clients": clients}
     return render(request, "official/view-client.html", context)
 
+# delete the client
 def delete_client(request, client_id):
     client = get_object_or_404(Client, id=client_id)
     client.delete()
     return JsonResponse({'message': 'Client deleted successfully'})
 
-
-
+# view project of a perticular client
 def viewClientProject(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
     projects = Project.objects.filter(client=client)
@@ -127,19 +129,14 @@ def viewClientProject(request, client_id):
     }
     return render(request, "official/view-client-project.html", context)
 
-
+# index page
 def index(request):
     total_projects = Project.objects.count()
     context = {"is_index": True,
                "total_projects": total_projects}
     return render(request, "official/index.html", context)
 
-
-def register(request):
-    return render(request, "official/register.html")
-
 # SUBMISSION PROGRAM
-
 def submission(request):
     two_days_ago = datetime.now() - timedelta(days=2)
     projectList = Project.objects.filter(submission_date__gte=two_days_ago)
@@ -147,6 +144,8 @@ def submission(request):
                "projectList": projectList
                }
     return render(request, "official/submission.html", context)
+
+
 
 def GetSubmissionDetail(request, projectSubmissionId):
     project = get_object_or_404(Project, id=projectSubmissionId)
@@ -241,9 +240,6 @@ def addProject(request):
     return render(request, "official/add-project.html", context)
 
 
-def addDetailer(request):
-    context = {"is_addTask": True}
-    return render(request, "official/add-detailer.html", context)
 
 
 # DAILY REPORT
