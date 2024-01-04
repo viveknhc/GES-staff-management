@@ -2,44 +2,265 @@
 {% load static %}
 {% block content %}
 
-        <div class="card">
-            <div class="card-body">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
-                    <h3 class="font-weight-bold">Project List</h3>
-                    <h6 class="font-weight-normal mb-0">List of all project.you can click view button for detailed view</h6>
-                  </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                            <table id="order-listing" class="table">
-                                <thead>
-                                    <tr>
-                                        <th>SL/NO</th>
-                                        <th>PROJECT NAME</th>
-                                        <th>ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">Project List</h3>
+            <h6 class="font-weight-normal mb-0">List of all project.you can click view button for detailed view</h6>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>PROJECT NAME</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                                    {% for project in projects %}
-                                    <tr>
-                                        <td>{{ forloop.counter }}</td>
-                                        <td>{{ project.title }}</td>
-                                    
-                                        <td>
-                                            <a href="{% url 'official:project-detail' project.id %}" class="btn btn-outline-primary">View</a>
-                                        </td>
-                                    </tr>
-                                   
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            {% for project in projects %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ project.title }}</td>
+
+                                <td>
+                                    <a href="{% url 'official:project-detail' project.id %}" class="btn btn-outline-primary">View</a>
+                                    <button class="btn btn-danger deleteButton" onclick="deleteProject({{project.id}})">Delete</button>
+
+                                    <button class="btn btn-outline-success deleteButton" onclick="editProject({{project.id}})" data-bs-toggle="modal" data-bs-target="#editModal" >Edit</button>
+
+                                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <form id="editProject" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Product Name</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" name="projectTitle" value="" id="projectTitle">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Description</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" name="updateDescription" value="" id="updateDescription">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Start Date</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="date" class="form-control" name="updateStartDate" value="" id="updateStartDate">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">End Date</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="date" class="form-control" name="updateEndDate" value="" id="updateEndDate">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Assume No sheeet</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="number" class="form-control" name="updateAssumeNoSheet" value="" id="updateAssumeNoSheet">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Assume wt</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="number" class="form-control" name="updateAssumeWt" value="" id="updateAssumeWt">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Submission Date</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="date" class="form-control" name="updateSubmissionDate" value="" id="updateSubmissionDate">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Fisrt Checking Complete</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="date" class="form-control" name="updateFirstCheckComplete" value="" id="updateFirstCheckComplete">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Comments</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" name="updateComments" value="" id="updateComments">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Second Check Complete</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="date" class="form-control" name="updateSecondCheckComplete" value="" id="updateSecondCheckComplete">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-form-label col-md-4">Actuval Submission</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="date" class="form-control" name="updateActualSubmission" value="" id="updateActualSubmission">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                   
+
+
+                                                    <input type="number" id="prId" name="prId" hidden>
+
+                                                    <div class="text-end mt-4">
+                                                        <button type="submit" class="btn btn-primary">Edit Product</button>
+                                                    </div>
+                                                </form>
+
+
+                                            </div>
+                                           
+                                          </div>
+                                        </div>
+                                      </div>
+                                <!-- </td> -->
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-  
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Delete Project -->
+<script>
+     function deleteProject(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                window.location.href = "/delete_project/" + id
+            }
+        })
+    }
+
+
+    // Getting the project details
+    function editProject(id) {
+        $.ajax({
+            url: "/getproject/" +id,
+            type: 'GET',
+
+            success: function (responce) {
+                $('#prId').val(id)
+                $('#projectTitle').val(responce.title)
+                $('#updateDescription').val(responce.description)
+
+                $('#updateStartDate').val(responce.startDate)
+                $('#updateEndDate').val(responce.endDate)
+                $('#updateAssumeNoSheet').val(responce.assumeNoSheet)
+                $('#updateAssumeWt').val(responce.assumeWt)
+                $('#updateSubmissionDate').val(responce.submissionDate)
+                $('#updateFirstCheckComplete').val(responce.firstCheckCompleted)
+                $('#updateComments').val(responce.comments)
+                $('#updateSecondCheckComplete').val(responce.secondCheckComplete)
+                $('#updateActualSubmission').val(responce.actualSubmission)
+
+            }
+
+        })
+    }
+
+
+    // editing project
+
+    $(document).ready(function () {
+        
+        $("#editProject").submit(function (e) {
+            // var data = $("#categorysave").serializeArray();
+            var formData = new FormData(e.target);
+            e.preventDefault();
+            console.log(formData)
+            $.ajax({
+                url: "/editProject/",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function (responce) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Your Project Has Been Edited',
+                        showConfirmButton: false,
+                        timer: 3000
+                      })
+                      setInterval('location.reload()', 3000);   
+                 
+                }  
+            })
+        })
+    });
+</script>
+
+
 
 
 {% endblock %}

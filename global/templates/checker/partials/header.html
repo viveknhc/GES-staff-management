@@ -26,8 +26,7 @@
 
           {% if assigned_projects %}
           {% for notify in assigned_projects %}
-          <a class="dropdown-item preview-item" id="project{{ notify.id }}" data-project-id="{{ notify.id }}"
-            data-url="{% url 'checker:project-detail' notify.id %}">
+          <a class="dropdown-item preview-item" id="project{{ notify.id }}" data-project-id="{{ notify.id }}">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-success">
                 <i class="ti-server mx-0"></i>

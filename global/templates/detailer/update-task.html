@@ -89,13 +89,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Description</label>
-                                <textarea name="description" class="form-control" id="" rows="5"></textarea>
-                            </div>
-                        </div> -->
-
 
 
                         <div class="text-end">
@@ -106,6 +99,56 @@
 
             </div>
         </div>
+
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">Perviews Status</h3>
+        </div>
+        {% if project_statuses %}
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>UPDATED BY</th>
+                                <th>UPDATED DATE</th>
+                                <th>STATUS</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for status in project_statuses %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ status.updated_by }}</td>
+                                <td>{{ status.updated_at }}</td>
+                                <td>{{ status.project_status }}</td>
+                                <td>{{ status.daily_description }}</td>
+                                
+
+                                
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        {% else %}
+        <p>No project statuses available.</p>
+        {% endif %}
 
     </div>
 </div>

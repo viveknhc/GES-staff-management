@@ -125,38 +125,38 @@ class ProjectStatus(models.Model):
         return self.project.title
 
 
-class MonthlyReport(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    monthly_wt_mt = models.FloatField()
-    monthly_no_sheet = models.FloatField()
+# class MonthlyReport(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+#     monthly_wt_mt = models.FloatField()
+#     monthly_no_sheet = models.FloatField()
     
-    def __str__(self):
-        return self.project.title
+#     def __str__(self):
+#         return self.project.title
     
     
-    def update_monthly_totals(cls, user):
-        projects = Project.objects.all()
+#     def update_monthly_totals(cls, user):
+#         projects = Project.objects.all()
 
-        for project in projects:
-            monthly_entries = ProjectStatus.objects.filter(
-                project=project,
-                user=user,
-                updated_at__month=timezone.now().month
-            )
-            monthly_totals = monthly_entries.aggregate(
-                total_wt_mt=Sum('wt_mt'),
-                total_no_sheet=Sum('no_sheet')
-            )
+#         for project in projects:
+#             monthly_entries = ProjectStatus.objects.filter(
+#                 project=project,
+#                 user=user,
+#                 updated_at__month=timezone.now().month
+#             )
+#             monthly_totals = monthly_entries.aggregate(
+#                 total_wt_mt=Sum('wt_mt'),
+#                 total_no_sheet=Sum('no_sheet')
+#             )
             
-            monthly_wt_mt = monthly_totals['total_wt_mt'] or 0
-            monthly_no_sheet = monthly_totals['total_no_sheet'] or 0
+#             monthly_wt_mt = monthly_totals['total_wt_mt'] or 0
+#             monthly_no_sheet = monthly_totals['total_no_sheet'] or 0
 
-            monthlyReport.objects.update_or_create(
-                user=user,
-                project=project,
-                defaults={
-                    'monthly_wt_mt': monthly_wt_mt,
-                    'monthly_no_sheet': monthly_no_sheet
-                }
-            )
+#             monthlyReport.objects.update_or_create(
+#                 user=user,
+#                 project=project,
+#                 defaults={
+#                     'monthly_wt_mt': monthly_wt_mt,
+#                     'monthly_no_sheet': monthly_no_sheet
+#                 }
+#             )

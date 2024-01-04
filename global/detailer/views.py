@@ -15,7 +15,7 @@ def viewTask(request):
 
 def updateTask(request, project_id):
     project = get_object_or_404(Project, id=project_id)
-    project_statuses = ProjectStatus.objects.filter(project=project)
+    project_statuses = ProjectStatus.objects.filter(project=project).order_by('-updated_at')
     
     if request.method == 'POST':
         project_id = request.POST['project_id']

@@ -55,12 +55,14 @@
                                 <td>{{ project.assigned_detailer }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#submissionEdit">
+                                        data-bs-target="#submissionEdit{{project.id}}"
+                                        onclick="getSubmission('{{project.id}}')">
                                         <i class="ti-pencil-alt"></i>
                                     </button>
                                 </td>
 
-                                <div class="modal fade" id="submissionEdit" tabindex="-1"
+
+                                <div class="modal fade" id="submissionEdit{{project.id}}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
@@ -70,105 +72,116 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-
-
                                                 <form id="submissionEditForm" method="POST" action="">
                                                     {% csrf_token %}
 
                                                     <div class="row">
-
+                                                        <h1>{{ project.id }}</h1>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Project id</label>
-                                                                <input id="project_id" type="text" class="form-control">
+                                                                <input class="form-control" type="text" name=""
+                                                                    id="uniqId">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Client</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="updateClient" type="text"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Project</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="project" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Description</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="description" type="text"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>No.of sheets</label>
-                                                                <input type="number" class="form-control">
+                                                                <input id="no_of_sheet" type="number"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>First draft start</label>
-                                                                <input type="date" class="form-control">
+                                                                <input id="first_draft_start" type="date"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>First draft Complete</label>
-                                                                <input type="date" class="form-control">
+                                                                <input id="first_draft_complete" type="date"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
 
                                                             <div class="form-group">
                                                                 <label>First Check Name</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="first_check_name" type="text"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Comments</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="comments" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Second Check Complete</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="second_check_complete" type="text"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Second Check Name</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="second_check_name" type="text"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Submission date</label>
-                                                                <input type="date" class="form-control">
+                                                                <input id="submission_date" type="date"
+                                                                    class="form-control">
                                                             </div>
 
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Actual Date of submission</label>
-                                                                <input type="date" class="form-control">
+                                                                <input id="actual_date" type="date"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Detailer</label>
-                                                                <input type="text" class="form-control">
+                                                                <input id="detailer" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <button class="btn btn-danger">Update</button>
+
+                                                </form>
                                             </div>
 
-                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -183,8 +196,43 @@
 </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function getSubmission(id) {
+        alert(id)
+        $.ajax({
+            type: 'GET',
+            url: 'official/getsubmission/' + id,
+
+            success: function (response) {
+                $('#uniqId').val(id)
+                $("#updateClient").val(response.data.client);
+
+                // $("#project").val(response.data.project);
+                // $("#description").val(response.data.description);
+                // $("#no_of_sheet").val(response.data.no_of_sheet);
+                // $("#first_draft_start").val(response.data.first_draft_start);
+                // $("#first_draft_complete").val(response.data.first_draft_complete);
+                // $("#first_check_name").val(response.data.first_check_name);
+                // $("#comments").val(response.data.comments);
+                // $("#second_check_complete").val(response.data.second_check_complete);
+                // $("#second_check_name").val(response.data.second_check_name);
+                // $("#submission_date").val(response.data.submission_date);
+                // $("#actual_date").val(response.data.actual_date);
+                // $("#detailer").val(response.data.detailer);
+            }
+        })
+    }
 
 </script>
+
+
+
 {% endblock %}

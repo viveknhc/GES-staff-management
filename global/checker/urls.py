@@ -10,6 +10,8 @@ urlpatterns = [
     path("project-list",views.projectList,name="project-list"),
     path("project-detail/<int:project_id>/",views.projectDetail,name="project-detail"),
 
+    path('delete_status/<int:status_id>/', views.delete_status, name='delete_status'),
+
     path('mark_as_seen/', views.mark_as_seen, name='mark_as_seen'),
     
     # NOTIFICATION

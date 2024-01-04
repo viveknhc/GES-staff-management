@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from official.models import User, Detailer, Checker, Client, Project, ProjectStatus
 from django.http import JsonResponse
 from django.views import View
+from django.urls import reverse
 
 def index(request):
     context = {"is_index": True}
@@ -45,18 +46,12 @@ def projectDetail(request, project_id):
     return render(request, "checker/project-detail.html", context)
 
 
-# def header(request):
-#     checker = Checker.objects.get(user=request.user)
-#     assigned_projects = Project.objects.filter(assigned_checker=checker)
-#     context = {
-#         "assigned_projects" : assigned_projects
-#     }
-#     return render(request,"checker/project-detail.html", context)
+def delete_status(request, status_id):
+    project_status = ProjectStatus.objects.get(id=status_id)
+    project_id = project_status.project.id  # Get the project_id before deleting the status
+    project_status.delete()
+    return redirect("checker:project-detail", project_id=project_id)
 
-# def mark_as_seen(request, pk):
-#     project = get_object_or_404(Project, pk=pk)
-#     response_data = {'message': 'Project marked as seen successfully'}
-#     return JsonResponse(response_data)
 
 
 def mark_as_seen(request):

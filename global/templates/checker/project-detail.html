@@ -91,14 +91,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Description</label>
-                                <textarea name="description" class="form-control" id="" rows="5"></textarea>
-                            </div>
-                        </div> -->
-
-
 
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -114,7 +106,7 @@
 
 
 
-<!-- <div class="card">
+<div class="card">
     <div class="card-body">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
             <h3 class="font-weight-bold">Perviews Status</h3>
@@ -127,19 +119,45 @@
                         <thead>
                             <tr>
                                 <th>SL/NO</th>
+                                <th>UPDATED BY</th>
                                 <th>UPDATED DATE</th>
                                 <th>STATUS</th>
                                 <th>DESCRIPTION</th>
+                                <th>N0 OF SHEET</th>
+                                <th>WT/MT</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {% for status in project_statuses %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
+                                <td>{{ status.updated_by }}</td>
                                 <td>{{ status.updated_at }}</td>
                                 <td>{{ status.project_status }}</td>
                                 <td>{{ status.daily_description }}</td>
+                                <td>{{ status.no_sheet }}</td>
+                                <td>{{ status.wt_mt }}</td>
+                                
+                                    <td>
+                                        {% if status.project_status == 'Ongoing' %}
+                                        <button type="button" class="btn btn-outline-warning btn-fw">On going</button>
+                                        {% elif status.project_status == 'start' %}
+                                        <button type="button" class="btn btn-outline-info btn-fw">Start</button>
+                                        {% elif status.project_status == 'Completed' %}
+                                        <button type="button" class="btn btn-outline-success btn-fw">Completed</button>
+                                        {% else %}
+                                        <button>Unknown Status</button>
+                                        {% endif %}
+                                    </td>
+                              
+                                <td>
+                                    <button class="btn btn-danger deleteButton"
+                                        onclick="deleteStatus({{status.id}})">Delete</button>
+                                </td>
+
                             </tr>
 
                             {% endfor %}
@@ -156,9 +174,35 @@
         {% endif %}
 
     </div>
-</div> -->
+</div>
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- Delete Project -->
+
+<script>
+    function deleteStatus(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                window.location.href = "/checker/delete_status/" + id
+            }
+        })
+    }
+</script>
 
 
 {% endblock %}

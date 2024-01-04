@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout
-from .models import User, Detailer, Checker, Client, Project, ProjectStatus, MonthlyReport
+from .models import User, Detailer, Checker, Client, Project, ProjectStatus
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.db.models import Q
@@ -106,6 +106,11 @@ def listChecker(request):
         "checkers": checkers}
     return render(request, "official/list-checker.html", context)
 
+# def delete_checker(request,checker_id):   
+#     checker = User.objects.get(id=checker_id)
+#     checker.delete()
+#     return redirect("official:list-checker")
+
 # view all the client
 def viewClient(request):
     clients = Client.objects.all()
@@ -114,10 +119,10 @@ def viewClient(request):
     return render(request, "official/view-client.html", context)
 
 # delete the client
-def delete_client(request, client_id):
-    client = get_object_or_404(Client, id=client_id)
-    client.delete()
-    return JsonResponse({'message': 'Client deleted successfully'})
+# def delete_client(request, client_id):
+#     client = get_object_or_404(Client, id=client_id)
+#     client.delete()
+#     return JsonResponse({'message': 'Client deleted successfully'})
 
 # view project of a perticular client
 def viewClientProject(request, client_id):
@@ -145,8 +150,29 @@ def submission(request):
                }
     return render(request, "official/submission.html", context)
 
+# def getSubmission(request,id):
+#     submission = Project.objects.get(id=id)
+#     print(submission)
+#     print
+#     data = {
+#         "client" :submission.client,
+#         }
+#     return JsonResponse({"data": data})
 
 
+def getSubmission(request, id):
+    print(id)
+    submission = Project.objects.get(id=id)
+    data = {"client": submission.client}
+    return JsonResponse({"data": data})
+
+
+# def getSubcategory(request, submission_id):
+#     subcategory = SubCategory.objects.get(id=id)
+#     print(subcategory)
+#     data = {"name": subcategory.name}
+#     print(data)
+#     return JsonResponse(data)
 
 
 def attendance(request):
@@ -219,8 +245,61 @@ def addProject(request):
     return render(request, "official/add-project.html", context)
 
 
+# Delete Project
+def delete_project(request, project_id):
+    project = Project.objects.get(id=project_id)
+    project.delete()
+    return redirect("official:projects")
 
 
+def getProject(request,id):
+    project = Project.objects.get(id=id)
+    data = {
+        "title": project.title,
+        "description":project.description,
+        "startDate":project.start_date,
+        "endDate":project.end_date,
+        "assumeNoSheet":project.assumed_no_of_sheet,
+        "assumeWt":project.assumed_wt,
+        "submissionDate":project.submission_date,
+        "firstCheckCompleted":project.first_check_complete,
+        "comments":project.comments,
+        "secondCheckComplete":project.second_check_complete,
+        "actualSubmission":project.actual_submission,
+            }
+    return JsonResponse(data)
+
+def editProject(request):
+    id = request.POST['prId']
+    title = request.POST['projectTitle']
+    description = request.POST['updateDescription']
+    # start_date = request.POst['updateStartDate']
+    # end_date = request.POST['updateEndDate']
+    # assumeNoSheet = request.POST['updateAssumeNoSheet']
+    # assumed_wt = request.POST['updateAssumeWt']
+    # submission_date = request.POST['updateSubmissionDate']
+    # first_check_complete = request.POST['updateFirstCheckComplete']
+    # comments = request.POST['updateComments']
+    # second_check_complete = request.POST['updateSecondCheckComplete']
+    # actual_submission = request.POST['updateActualSubmission']
+    
+    project = Project.objects.get(id=id)
+    project.title = title
+    project.description = description
+    # project.start_date = start_date
+    # project.end_date = end_date
+    # project.assumed_no_of_sheet = assumeNoSheet
+    # project.assumed_wt = assumed_wt
+    # project.submission_date = submission_date
+    # project.first_check_complete = first_check_complete
+    # project.comments = comments
+    # project.second_check_complete = second_check_complete
+    # project.actual_submission = actual_submission
+
+    project.save()  # Correct way to save changes to an object
+    return JsonResponse({"data": "aaa"})
+    
+    
 # DAILY REPORT
 # def dailyReport(request):
 #     projectList = Project.objects.all()
@@ -313,21 +392,21 @@ def dailyReportNew(request, user_id):
     }
 
     return render(request, 'official/project-list-for-daily-report.html', context)
+# 
 
+# def test(request):
+#     user = request.user
 
-def test(request):
-    user = request.user
+#     # Call the class method to update monthly totals for the user
+#     MonthlyReport.update_monthly_totals(user)
 
-    # Call the class method to update monthly totals for the user
-    MonthlyReport.update_monthly_totals(user)
+#     # Retrieve the monthly reports for the user
+#     monthly_reports = MonthlyReport.objects.filter(user=user)
 
-    # Retrieve the monthly reports for the user
-    monthly_reports = MonthlyReport.objects.filter(user=user)
-
-    context = {
-        "monthly_reports": monthly_reports
-    }
-    return render(request, "official/test.html")
+#     context = {
+#         "monthly_reports": monthly_reports
+#     }
+#     return render(request, "official/test.html")
 
 
 # def header(request):

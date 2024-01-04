@@ -14,22 +14,26 @@ urlpatterns = [
     path("add-user/", views.addUser, name="add-user"),
     path("list-detailer/", views.listDetailer, name="list-detailer"),
     path("list-checker/", views.listChecker, name="list-checker"),
+#     path('delete_checker/<int:checker_id>/', views.delete_checker, name='delete-checker'),
 
     # PROJECT LIST
     path("projects/", views.projects, name="projects"),
     path("add-project/", views.addProject, name="add-project"),
-    path("project-detail/<int:project_id>/",
-         views.projectDetail, name="project-detail"),
+    path("project-detail/<int:project_id>/",views.projectDetail, name="project-detail"),
+    path('delete_project/<int:project_id>/', views.delete_project, name='delete-project'),
+    path("getproject/<int:id>", views.getProject, name="getProject"),
+    path("editProject/", views.editProject, name="editProject"),
 
     # Add Client
     path("add-client/", views.addClient, name="add-client"),
     path("view-client/", views.viewClient, name="view-client"),
     path("view-client-project/<int:client_id>/",
          views.viewClientProject, name="view-client-project"),
-     path('delete-client/<int:client_id>/', views.delete_client, name='delete_client'),
+#     path('delete-client/<int:client_id>/', views.delete_client, name='delete_client'),
 
     # SUBMISSION PROGRAM
     path("submission/", views.submission, name="submission"),
+    path('getsubmission/<int:id>/', views.getSubmission, name='getsubmission'),
     path("attendance/", views.attendance, name="attendance"),
 
 
@@ -46,6 +50,6 @@ urlpatterns = [
 
     # TEST
 
-    path('test/', views.test, name='test'),
+#     path('test/', views.test, name='test'),
 
 ]

@@ -26,13 +26,13 @@
                             <p class="card-title text-white pt-5">Number 0f Sheet : {{ project.assumed_no_of_sheet }}</p>
                             <p class="card-title text-white">First Drafting Start : {{ project.start_date}}</p>
                             <p class="card-title text-white">First Drafting Complete : {{ project.end_date}}</p>
-                            <p class="card-title text-white">First Checking Complete : ****</p>
+                            <p class="card-title text-white">First Checking Complete : {{ project.first_check_complete}}</p>
                             <p class="card-title text-white">First Checking Name : {{ project.assigned_checker}}</p>
-                            <p class="card-title text-white">Commnets Updated : ***</p>
-                            <p class="card-title text-white">Second Checking Complete : ****</p>
+                            <p class="card-title text-white">Commnets Updated : {{ project.comments}}</p>
+                            <p class="card-title text-white">Second Checking Complete : {{ project.second_check_complete }}</p>
                             <p class="card-title text-white">Second Checking Name : {{ project.assigned_detailer}}</p>
                             <p class="card-title text-white">Submission Date : {{ project.submission_date }}</p>
-                            <p class="card-title text-white">Actual Date of Submission : ***</p>
+                            <p class="card-title text-white">Actual Date of Submission :{{ project.actual_submission }}</p>
                             <p class="card-title text-white">Detailer : {{ project.assigned_detailer }}</p>
                         </div>
                     </div>

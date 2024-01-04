@@ -17,7 +17,7 @@
                                 <th>USERNAME</th>
                                 <th>PHONE NUMBER</th>
                                 <th>EMAIL</th>
-                                <th>ACTION</th>
+                                <!-- <th>ACTION</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -28,7 +28,9 @@
                                 <td>{{ checker.name }}</td>
                                 <td>{{ checker.user.phone }}</td>
                                 <td>{{ checker.user.email }}</td>
-                                <td>fdsdsf</td>
+                                <!-- <td>
+                                    <button class="btn btn-danger deleteButton" onclick="deleteChecker({{checker.id}})">Delete</button>
+                                </td> -->
                             </tr>
                             {% endfor %}
 
@@ -39,4 +41,28 @@
         </div>
     </div>
 </div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function deleteChecker(id) {
+       Swal.fire({
+           title: 'Are you sure?',
+           text: "You won't be able to revert this!",
+           icon: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'Yes, delete it!'
+       }).then((result) => {
+           if (result.isConfirmed) {
+               Swal.fire(
+                   'Deleted!',
+                   'Your file has been deleted.',
+                   'success'
+               )
+               window.location.href = "/delete_checker/" + id
+           }
+       })
+   }
+</script> -->
 {% endblock %}
