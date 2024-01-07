@@ -90,10 +90,10 @@ class Project(models.Model):
     assumed_no_of_sheet = models.IntegerField()
     assumed_wt = models.FloatField()
     submission_date = models.DateField()
-    first_check_complete = models.DateField(default=None,blank=True, null=True)
-    comments = models.TextField(default=None,blank=True, null=True)
-    second_check_complete = models.DateField(default=None,blank=True, null=True)
-    actual_submission = models.DateField(default=None,blank=True, null=True)
+    first_check_complete = models.DateField()
+    comments = models.TextField()
+    second_check_complete = models.DateField()
+    actual_submission = models.DateField()
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     assigned_detailer = models.ForeignKey(Detailer, on_delete=models.CASCADE)
     assigned_checker = models.ForeignKey(Checker, on_delete=models.CASCADE)
@@ -125,38 +125,25 @@ class ProjectStatus(models.Model):
         return self.project.title
 
 
-# class MonthlyReport(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-#     monthly_wt_mt = models.FloatField()
-#     monthly_no_sheet = models.FloatField()
-    
-#     def __str__(self):
-#         return self.project.title
-    
-    
-#     def update_monthly_totals(cls, user):
-#         projects = Project.objects.all()
+class MonthlyReport(models.Model):
+    MONTH_CHOICES = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March', 'March'),
+        ('April', 'April'),
+        ('May', 'May'),
+        ('June', 'June'),
+        ('July', 'July'),
+        ('August', 'August'),
+        ('September', 'September'),
+        ('October', 'October'),
+        ('November', 'November'),
+        ('December', 'December'),
+    ]
 
-#         for project in projects:
-#             monthly_entries = ProjectStatus.objects.filter(
-#                 project=project,
-#                 user=user,
-#                 updated_at__month=timezone.now().month
-#             )
-#             monthly_totals = monthly_entries.aggregate(
-#                 total_wt_mt=Sum('wt_mt'),
-#                 total_no_sheet=Sum('no_sheet')
-#             )
-            
-#             monthly_wt_mt = monthly_totals['total_wt_mt'] or 0
-#             monthly_no_sheet = monthly_totals['total_no_sheet'] or 0
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    month = models.CharField(max_length = 200,choices=MONTH_CHOICES)
+    monthly_wt_mt = models.FloatField()
+    monthly_no_sheet = models.FloatField()
 
-#             monthlyReport.objects.update_or_create(
-#                 user=user,
-#                 project=project,
-#                 defaults={
-#                     'monthly_wt_mt': monthly_wt_mt,
-#                     'monthly_no_sheet': monthly_no_sheet
-#                 }
-#             )

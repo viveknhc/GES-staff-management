@@ -15,22 +15,14 @@
       </a>
     </li>
 
-{% comment %}
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
-        aria-controls="form-elements">
-        <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">checker</span>
-        <i class="menu-arrow"></i>
+      <a class="nav-link" href="{% url 'checker:monthly_report' %}">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Monthly Report</span>
       </a>
-      <div class="collapse" id="form-elements">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="{% url 'checker:view-checker' %}">View checker</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'checker:add-checker' %}">Add checker</a></li>
-        </ul>
-      </div>
     </li>
-    {% endcomment %}
+
+
 
 
   </ul>

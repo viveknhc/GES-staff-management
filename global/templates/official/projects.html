@@ -50,7 +50,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Product Name</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" name="projectTitle" value="" id="projectTitle">
+                                                                    <input type="text" class="form-control" name="projectTitle"  id="projectTitle">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -58,7 +58,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Description</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" name="updateDescription" value="" id="updateDescription">
+                                                                    <input type="text" class="form-control" name="updateDescription"  id="updateDescription">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -67,16 +67,16 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Start Date</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="date" class="form-control" name="updateStartDate" value="" id="updateStartDate">
+                                                                    <input type="date" class="form-control" name="updateStartDate"  id="updateStartDate">
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-6">
+                                                         <div class="col-lg-6">
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">End Date</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="date" class="form-control" name="updateEndDate" value="" id="updateEndDate">
+                                                                    <input type="date" class="form-control" name="updateEndDate"  id="updateEndDate">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -85,7 +85,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Assume No sheeet</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="number" class="form-control" name="updateAssumeNoSheet" value="" id="updateAssumeNoSheet">
+                                                                    <input type="number" class="form-control" name="updateAssumeNoSheet"  id="updateAssumeNoSheet">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -94,7 +94,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Assume wt</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="number" class="form-control" name="updateAssumeWt" value="" id="updateAssumeWt">
+                                                                    <input type="number" class="form-control" name="updateAssumeWt"  id="updateAssumeWt">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -103,7 +103,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Submission Date</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="date" class="form-control" name="updateSubmissionDate" value="" id="updateSubmissionDate">
+                                                                    <input type="date" class="form-control" name="updateSubmissionDate"  id="updateSubmissionDate">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -112,7 +112,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Fisrt Checking Complete</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="date" class="form-control" name="updateFirstCheckComplete" value="" id="updateFirstCheckComplete">
+                                                                    <input type="date" class="form-control" name="updateFirstCheckComplete"  id="updateFirstCheckComplete">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -121,7 +121,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Comments</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" name="updateComments" value="" id="updateComments">
+                                                                    <input type="text" class="form-control" name="updateComments"  id="updateComments">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -130,16 +130,16 @@
                                                             <div class="form-group row">
                                                                 <label class="col-form-label col-md-4">Second Check Complete</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="date" class="form-control" name="updateSecondCheckComplete" value="" id="updateSecondCheckComplete">
+                                                                    <input type="date" class="form-control" name="updateSecondCheckComplete"  id="updateSecondCheckComplete">
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-6">
                                                             <div class="form-group row">
-                                                                <label class="col-form-label col-md-4">Actuval Submission</label>
+                                                                <label class="col-form-label col-md-4">Actual Submission</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="date" class="form-control" name="updateActualSubmission" value="" id="updateActualSubmission">
+                                                                    <input type="date" class="form-control" name="updateActualSubmission"  id="updateActualSubmission">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -209,18 +209,18 @@
 
             success: function (responce) {
                 $('#prId').val(id)
-                $('#projectTitle').val(responce.title)
-                $('#updateDescription').val(responce.description)
+                $('#projectTitle').val(responce.title);
+                $('#updateDescription').val(responce.description);
+                $('#updateStartDate').val(responce.startDate);
 
-                $('#updateStartDate').val(responce.startDate)
-                $('#updateEndDate').val(responce.endDate)
-                $('#updateAssumeNoSheet').val(responce.assumeNoSheet)
-                $('#updateAssumeWt').val(responce.assumeWt)
-                $('#updateSubmissionDate').val(responce.submissionDate)
-                $('#updateFirstCheckComplete').val(responce.firstCheckCompleted)
-                $('#updateComments').val(responce.comments)
-                $('#updateSecondCheckComplete').val(responce.secondCheckComplete)
-                $('#updateActualSubmission').val(responce.actualSubmission)
+                $('#updateEndDate').val(responce.endDate);
+                $('#updateAssumeNoSheet').val(responce.assumeNoSheet);
+                $('#updateAssumeWt').val(responce.assumeWt);
+                $('#updateSubmissionDate').val(responce.submissionDate);
+                $('#updateFirstCheckComplete').val(responce.firstCheckCompleted);
+                $('#updateComments').val(responce.comments);
+                $('#updateSecondCheckComplete').val(responce.secondCheckComplete);
+                $('#updateActualSubmission').val(responce.actualSubmission);
 
             }
 

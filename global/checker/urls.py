@@ -13,6 +13,7 @@ urlpatterns = [
     path('delete_status/<int:status_id>/', views.delete_status, name='delete_status'),
 
     path('mark_as_seen/', views.mark_as_seen, name='mark_as_seen'),
+    path('monthly_report/',views.monthlyReport,name='monthly_report')
     
     # NOTIFICATION
     # path("header/",views.header,name="header"),

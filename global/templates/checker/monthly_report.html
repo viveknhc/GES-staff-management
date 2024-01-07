@@ -1,0 +1,167 @@
+{% extends 'checker/partials/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row grid-margin">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+
+      
+
+                <div class="text-center">
+                    <h3 class="">ADD MONTHLY REPORT</h3>
+                </div>
+
+                <form action="" method="POST" class="form-sample pt-5">
+                    {% csrf_token %}
+         
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Select Project</label>
+                                <div class="col-sm-8">
+                                    <select name="select_project" class="form-control">
+                                        {% for i in projects %}
+                                        <option value="{{ i.title }}">
+                                            {{ i.title }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Select Month</label>
+                                <div class="col-sm-8">
+                                    <select name="select_month" class="form-control">
+                                        {% for month, month_display in months %}
+                                        <option value="{{ month }}">{{ month_display }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <label for="select_month">Select Month:</label>
+                        <select name="select_month" id="select_month">
+                            {% for month, month_display in months %}
+                            <option value="{{ month }}">{{ month_display }}</option>
+                            {% endfor %}
+                        </select> -->
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Monthly No. oF Sheet</label>
+                                <div class="col-sm-8">
+                                    <input name="monthly_no_sheet" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Monthly Wt/Mt</label>
+                                <div class="col-sm-8">
+                                    <input name="monthly_wt" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 
+<div class="card">
+    <div class="card-body">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0 pb-5">
+            <h3 class="font-weight-bold">Perviews Status</h3>
+        </div>
+        {% if project_statuses %}
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL/NO</th>
+                                <th>UPDATED BY</th>
+                                <th>UPDATED DATE</th>
+                                <th>STATUS</th>
+                                <th>DESCRIPTION</th>
+                                <th>N0 OF SHEET</th>
+                                <th>WT/MT</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for status in project_statuses %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ status.updated_by }}</td>
+                                <td>{{ status.updated_at }}</td>
+                                <td>{{ status.project_status }}</td>
+                                <td>{{ status.daily_description }}</td>
+                                <td>{{ status.no_sheet }}</td>
+                                <td>{{ status.wt_mt }}</td>
+                                
+                                    <td>
+                                        {% if status.project_status == 'Ongoing' %}
+                                        <button type="button" class="btn btn-outline-warning btn-fw">On going</button>
+                                        {% elif status.project_status == 'start' %}
+                                        <button type="button" class="btn btn-outline-info btn-fw">Start</button>
+                                        {% elif status.project_status == 'Completed' %}
+                                        <button type="button" class="btn btn-outline-success btn-fw">Completed</button>
+                                        {% else %}
+                                        <button>Unknown Status</button>
+                                        {% endif %}
+                                    </td>
+                              
+                                <td>
+                                    <button class="btn btn-danger deleteButton"
+                                        onclick="deleteStatus({{status.id}})">Delete</button>
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        {% else %}
+        <p>No project statuses available.</p>
+        {% endif %}
+
+    </div>
+</div> -->
+
+
+
+
+
+{% endblock %}

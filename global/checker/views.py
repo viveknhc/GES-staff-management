@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from official.models import User, Detailer, Checker, Client, Project, ProjectStatus
+from official.models import User, Detailer, Checker, Client, Project, ProjectStatus,MonthlyReport
 from django.http import JsonResponse
 from django.views import View
 from django.urls import reverse
@@ -67,3 +67,32 @@ def mark_as_seen(request):
         return JsonResponse({'message': 'Project marked as seen successfully'})
 
     return JsonResponse({'error': 'Invalid request'})
+
+def monthlyReport(request):
+    checker = Checker.objects.get(user=request.user)
+    assigned_projects = Project.objects.filter(assigned_checker=checker)
+
+    if request.method == 'POST':
+        user = request.user
+        project_name = request.POST['select_project']
+        no_sheet = request.POST['monthly_no_sheet']
+        wt = request.POST['monthly_wt']
+        month = request.POST['select_month']
+
+        # Get the Project instance based on the selected project name
+        project = get_object_or_404(Project, title=project_name, assigned_checker=checker)
+
+        monthly_report = MonthlyReport(
+            user=user,
+            project=project,
+            month=month,
+            monthly_wt_mt=wt,
+            monthly_no_sheet=no_sheet
+        )
+        monthly_report.save()
+
+    context = {
+        "projects": assigned_projects,
+        "months": MonthlyReport.MONTH_CHOICES,  # Pass the choices to the template
+    }
+    return render(request, "checker/monthly_report.html", context)

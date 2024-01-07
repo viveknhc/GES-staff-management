@@ -210,6 +210,10 @@ def addProject(request):
         client_id = request.POST.get('client')
         assume_sheet = request.POST.get('assume_sheet')
         assume_wt = request.POST.get('assume_wt')
+        first_check_complete = request.POST.get('first_check_complete')
+        comments = request.POST.get('comments')
+        second_check_complete = request.POST.get('second_check_complete')
+        actual_submission = request.POST.get('actual_submission')
 
         try:
             assigned_checker = Checker.objects.get(id=int(assigned_checker_id))
@@ -230,6 +234,10 @@ def addProject(request):
             client=select_client,
             assigned_checker=assigned_checker,
             assigned_detailer=assigned_detailer,
+            first_check_complete = first_check_complete,
+            comments = comments,
+            second_check_complete = second_check_complete,
+            actual_submission = actual_submission
         )
 
     checker = Checker.objects.all()
@@ -273,52 +281,32 @@ def editProject(request):
     id = request.POST['prId']
     title = request.POST['projectTitle']
     description = request.POST['updateDescription']
-    # start_date = request.POst['updateStartDate']
-    # end_date = request.POST['updateEndDate']
-    # assumeNoSheet = request.POST['updateAssumeNoSheet']
-    # assumed_wt = request.POST['updateAssumeWt']
-    # submission_date = request.POST['updateSubmissionDate']
-    # first_check_complete = request.POST['updateFirstCheckComplete']
-    # comments = request.POST['updateComments']
-    # second_check_complete = request.POST['updateSecondCheckComplete']
-    # actual_submission = request.POST['updateActualSubmission']
+    start_date = request.POST['updateStartDate']
+    end_date = request.POST['updateEndDate']
+    assumeNoSheet = request.POST['updateAssumeNoSheet']
+    assumed_wt = request.POST['updateAssumeWt']
+    submission_date = request.POST['updateSubmissionDate']
+    first_check_complete = request.POST['updateFirstCheckComplete']
+    comments = request.POST['updateComments']
+    second_check_complete = request.POST['updateSecondCheckComplete']
+    actual_submission = request.POST['updateActualSubmission']
     
     project = Project.objects.get(id=id)
     project.title = title
     project.description = description
-    # project.start_date = start_date
-    # project.end_date = end_date
-    # project.assumed_no_of_sheet = assumeNoSheet
-    # project.assumed_wt = assumed_wt
-    # project.submission_date = submission_date
-    # project.first_check_complete = first_check_complete
-    # project.comments = comments
-    # project.second_check_complete = second_check_complete
-    # project.actual_submission = actual_submission
+    project.start_date = start_date
+    project.end_date = end_date
+    project.assumed_no_of_sheet = assumeNoSheet
+    project.assumed_wt = assumed_wt
+    project.submission_date = submission_date
+    project.first_check_complete = first_check_complete
+    project.comments = comments
+    project.second_check_complete = second_check_complete
+    project.actual_submission = actual_submission
 
     project.save()  # Correct way to save changes to an object
     return JsonResponse({"data": "aaa"})
     
-    
-# DAILY REPORT
-# def dailyReport(request):
-#     projectList = Project.objects.all()
-#     context = {
-#         "is_daily_report":True,
-#         "projectList": projectList
-#     }
-#     return render(request, "official/daily-report.html", context)
-
-
-# def dailyReportDetail(request, project_id):
-#     project = get_object_or_404(Project, id=project_id)
-#     project_status = ProjectStatus.objects.filter(project=project)
-
-#     context = {
-#         "project": project,
-#         "project_status": project_status
-#     }
-#     return render(request, "official/daily-report-detail.html", context)
 
 # MONTHLY REPORT
 
